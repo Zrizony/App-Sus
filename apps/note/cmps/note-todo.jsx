@@ -7,23 +7,23 @@ export class NoteTodo extends React.Component {
   }
 
   componentDidMount() {
-    const { todos } = this.props.note.info
-    this.setState({ todos })
+    const { todo } = this.props.note.info
+    this.setState({ todo })
   }
 
   onToggleCheck = (todoIdx, noteId) => {
     noteService
       .toggleTodoCheck(todoIdx, noteId)
-      .then((todos) => this.setState({ todos }))
+      .then((todo) => this.setState({ todo }))
   }
 
   render() {
-    const { todo: todos } = this.state
+    const { todo: todo } = this.state
     const { note } = this.props
     return (
-      <div className="todos-container">
+      <div className="todo-container">
         {note.info.title && (
-          <div className="todos-title">{note.info.title}</div>
+          <div className="todo-title">{note.info.title}</div>
         )}
         <ul>
           <button
@@ -32,12 +32,12 @@ export class NoteTodo extends React.Component {
             }`}
             onClick={(ev) => this.props.onPin(ev, this.props.note.id)}
           ></button>
-          {todos.map((todo, idx) => (
+          {todo.map((todo, idx) => (
             <li
               key={idx}
               className={`${
-                todos[idx + 1]
-                  ? todos[idx + 1].isChecked && !todo.isChecked && 'seperator'
+                todo[idx + 1]
+                  ? todo[idx + 1].isChecked && !todo.isChecked && 'seperator'
                   : ''
               }`}
             >

@@ -1,18 +1,18 @@
 export class CreateTodo extends React.Component {
   state = {
-    todos: [''],
+    todo: [''],
   }
 
   clearTodoLine = () => {
-    const { todos } = this.state
-    return todos.filter((todo) => {
+    const { todo: task } = this.state
+    return task.filter((todo) => {
       return todo !== ''
     })
   }
 
   handleChangeTodo = (ev, idx) => {
     const { handleChange } = this.props
-    let { todos } = this.state
+    let { todo: todos } = this.state
     todos[idx] = ev.target.value
     todos = this.clearTodoLine()
     handleChange({ target: { value: todos, name: 'todos' } })
@@ -21,7 +21,7 @@ export class CreateTodo extends React.Component {
   }
 
   render() {
-    const { todos } = this.state
+    const { todo: todos } = this.state
     return (
       <React.Fragment>
         {todos.map((todo, idx) => (

@@ -47,7 +47,6 @@
 
 .form-actions {
   height: 30px;
-  /* width: 598px; */
   width: auto;
   background-color: white;
   border-bottom-left-radius: 8px;
@@ -75,7 +74,6 @@
 .type-btns {
   display: flex;
   justify-content: space-between;
-  /* width: 150px; */
   right: 20px;
   top: 5px;
   position: absolute;

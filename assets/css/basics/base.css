@@ -36,3 +36,13 @@ img {
 button:hover {
   cursor: pointer;
 }
+
+textarea {
+  width: auto;
+  font-family: product-sans-regular;
+  background-color: unset;
+  overflow: hidden;
+  resize: none;
+  outline: none;
+  border: unset;
+}

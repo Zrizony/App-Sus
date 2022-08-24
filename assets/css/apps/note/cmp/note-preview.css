@@ -90,13 +90,13 @@
     font-family: open-sans;
   }
   
-  .todos-title {
+  .todo-title {
     font-weight: 800;
     padding-bottom: 5px;
     margin-bottom: 10px;
   }
   
-  .todos-container {
+  .todo-container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -105,7 +105,7 @@
     padding-right: 20px;
   }
   
-  .todos-container ul {
+  .todo-container ul {
     width: 100%;
     list-style: none;
     padding: 0;
@@ -114,17 +114,17 @@
     font-size: 14px;
   }
   
-  .todos-container p {
+  .todo-container p {
     margin: 0;
   }
   
-  .todos-container li {
+  .todo-container li {
     display: flex;
     margin-top: 8px;
     margin-bottom: 6px;
   }
   
-  .todos-container li p {
+  .todo-container li p {
     padding-left: 10px;
   }
   
