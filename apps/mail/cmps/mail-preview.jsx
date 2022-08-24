@@ -26,7 +26,7 @@ export class MailPreview extends React.Component {
         }
     }
 
-    isMailRead = () => {
+    isEnvelopOpen = () => {
         if (this.state.mail.isRead) {
             return <i className="fa-regular fa-envelope-open"></i>
         } else {
@@ -34,7 +34,28 @@ export class MailPreview extends React.Component {
         }
     }
 
-    onStarMail = () => {
+    onEnvelopClick = (ev) => {
+        ev.stopPropagation()
+
+        mailService.envelopClick(this.state.mail.id)
+            .then(() => {
+                this.setState(({ mail }) => ({
+                    mail: { ...mail, isRead: !this.state.mail.isRead }
+                }))
+            })
+    }
+
+    checkIfRead = () => {
+        if (this.state.mail.isRead) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    onStarMail = (ev) => {
+        ev.stopPropagation()
+
         console.log("star Clicked");
         mailService.starMail(this.state.mail.id)
             .then(() => {
@@ -54,16 +75,20 @@ export class MailPreview extends React.Component {
         }
     }
 
-    onTrashMail = () => {
-        console.log("trashed");
+    onOpenMail = () => {
+        console.log("opened mail!!!!!!!!");
     }
+
+
+
 
 
     render() {
         if (!this.state.mail) return <div>Loading...</div>
         const { id, fullName, subject, body, isRead, isStared } = this.state.mail
 
-        return <li className="mail-item">
+
+        return <li onClick={this.onOpenMail} className={`mail-item ${(isRead ? "read" : '')}`}>
             <span onClick={this.onStarMail} className="">
                 {this.checkIfStared()}
             </span>
@@ -77,11 +102,11 @@ export class MailPreview extends React.Component {
             <span className="body">
                 {body}
             </span>
-            <span onClick={this.onTrashMail} className="delete">
+            <span onClick={(ev) => { this.props.onTrashMail(ev, id) }} className="delete">
                 <i className="fa-regular fa-trash-can"></i>
             </span>
-            <span className="envelop">
-                {this.isMailRead()}
+            <span onClick={this.onEnvelopClick} className="envelop">
+                {this.isEnvelopOpen()}
             </span>
             <span className="date">
                 {this.renderDate()}

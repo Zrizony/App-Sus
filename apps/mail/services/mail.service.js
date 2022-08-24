@@ -2,17 +2,18 @@ import { storageService } from './../../../services/storage.service.js'
 import { utilService } from './../../../services/util.service.js'
 
 export const mailService = {
-    getMails,
+    query,
     starMail,
-    trashMail
+    trashMail,
+    envelopClick
 }
 
 const STORAGE_KEY = 'mailDB'
 
 // let gMails;
 
-function getMails() {
-    let gMails = storageService.loadFromStorage(STORAGE_KEY) || null
+function query(filterBy) {
+    let gMails = storageService.loadFromStorage(STORAGE_KEY)
     if (!gMails) {
         console.log("!mails");
         gMails = _createMails()
@@ -23,27 +24,40 @@ function getMails() {
 
 function starMail(mailId) {
     let gMails = storageService.loadFromStorage(STORAGE_KEY)
-    const mailIdx = gMails.findIndex((mail) => {
-        return mailId === mail.id
-    })
+
+    const mailIdx = gMails.findIndex((mail) => { return mailId === mail.id })
     gMails[mailIdx].isStared = !gMails[mailIdx].isStared
     storageService.saveToStorage(STORAGE_KEY, gMails)
-    console.log("stars changed", gMails[mailIdx].isStared);
+    console.log("stared changed", gMails[mailIdx].isStared);
+    return Promise.resolve()
+}
+
+function envelopClick(mailId) {
+    let gMails = storageService.loadFromStorage(STORAGE_KEY)
+
+    const mailIdx = gMails.findIndex((mail) => { return mailId === mail.id })
+    gMails[mailIdx].isRead = !gMails[mailIdx].isRead
+    storageService.saveToStorage(STORAGE_KEY, gMails)
+
     return Promise.resolve()
 }
 
 function trashMail(mailId) {
-    const mailIdx = gMails.findIndex((mail) => { mail.id === mailId })
-    gMails[mailIdx].isTrashed = true
-    storageService.saveToStorage(STORAGE_KEY, gMails)
-    return Promise.resolve(mailId, "trashed")
-}
+    let gMails = storageService.loadFromStorage(STORAGE_KEY)
 
-function deleteMail(mailId) {
-    const mailIdx = gMails.findIndex((mail) => { mail.id === mailId })
-    gMails.splice(mailIdx, 1)
-    storageService.saveToStorage(STORAGE_KEY, gMails)
-    return Promise.resolve(mailId, "deleted")
+    const mailIdx = gMails.findIndex((mail) => { return mail.id === mailId })
+    if (gMails[mailIdx].isTrashed === true) {
+        console.log(gMails[mailIdx].id, "deleted from servie");
+        gMails.splice(mailIdx, 1)
+        if (gMails.length === 0) { gMails = null }
+        storageService.saveToStorage(STORAGE_KEY, gMails)
+        return Promise.resolve("deleted")
+    } else {
+        console.log(gMails[mailIdx].id, "trashed from servie");
+        gMails[mailIdx].isTrashed = true
+        storageService.saveToStorage(STORAGE_KEY, gMails)
+        return Promise.resolve("trashed")
+    }
 }
 
 function _createMails() {

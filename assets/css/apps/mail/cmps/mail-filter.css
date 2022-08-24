@@ -1,0 +1,18 @@
+.mail-filter i {
+  position: absolute;
+  padding: 10px;
+  color: rgb(159, 170, 159);
+  min-width: 30px;
+  text-align: center;
+}
+
+.mail-filter i:hover {
+  /* background-color: rgb(139, 139, 139);
+  border-radius: 50%; */
+}
+
+.mail-filter input {
+  width: 90%;
+  padding: 10px;
+  padding-left: 40px;
+}
