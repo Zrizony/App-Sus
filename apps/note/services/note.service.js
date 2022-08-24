@@ -167,7 +167,7 @@ function _createNotes() {
       type: 'note-img',
       isPinned: false,
       info: {
-        url: 'https://static.wikia.nocookie.net/villains/images/4/4e/Bbt_cat.jpg/revision/latest?cb=20210223205127',
+        url: '../../../assets/img/bbtcat.png',
         title: 'Bob for hire',
       },
       style: {
@@ -179,7 +179,7 @@ function _createNotes() {
       type: 'note-video',
       isPinned: false,
       info: {
-        videoId: 'Tvi2n5w3tAw',
+        videoId: '0Xtbnfcxxco',
       },
       style: {
         backgroundColor: '#FDCFE8',

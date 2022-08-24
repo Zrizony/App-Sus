@@ -2,7 +2,6 @@ import { eventBusService } from '../../../services/event-bus.service.js'
 import { noteService } from '../services/note.service.js'
 import { NoteList } from '../cmps/note-list.jsx'
 import { NoteAdd } from '../cmps/note-add.jsx'
-import { Screen } from '../cmps/screen.jsx'
 
 export class NoteApp extends React.Component {
     state = {
@@ -35,11 +34,6 @@ export class NoteApp extends React.Component {
           this.loadNotes
         )
       }
-    }
-  
-    onSelectNote = (noteId) => {
-      eventBusService.emit('screen', true)
-      this.setState((prevState) => ({ ...prevState, selectedNote: noteId }))
     }
   
     onPinNote = (ev, noteId) => {
@@ -80,8 +74,6 @@ export class NoteApp extends React.Component {
               onDuplicateNote={this.onDuplicateNote}
               onPinNote={this.onPinNote}
             />
-  
-            <Screen />
           </section>
         </React.Fragment>
       )
