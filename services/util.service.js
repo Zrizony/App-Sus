@@ -6,6 +6,8 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
+    getFullDate,
+    getTime
 }
 
 function makeId(length = 6) {
@@ -59,4 +61,23 @@ function getMonthName(date) {
         "July", "August", "September", "October", "November", "December"
     ]
     return monthNames[date.getMonth()]
+}
+
+function getFullDate(milsec) {
+    let day = new Date(milsec).getDate()
+    let month = new Date(milsec).getMonth()
+    const year = new Date(milsec).getFullYear()
+    if (day < 10) { day = "0" + day }
+    if (month < 10) { month = "0" + month }
+    let date = day + '-' + month + '-' + year
+    return date
+}
+
+function getTime(milsec) {
+    let hours = new Date(milsec).getHours()
+    let minutes = new Date(milsec).getMinutes()
+    if (hours < 10) { hours = "0" + hours }
+    if (minutes < 10) { minutes = "0" + minutes }
+    return hours + ':' + minutes
+
 }

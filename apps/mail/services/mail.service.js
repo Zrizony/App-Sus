@@ -2,22 +2,34 @@ import { storageService } from './../../../services/storage.service.js'
 import { utilService } from './../../../services/util.service.js'
 
 export const mailService = {
-    getMails
+    getMails,
+    starMail,
+    trashMail
 }
 
 const STORAGE_KEY = 'mailDB'
 
-let gMails;
+// let gMails;
 
 function getMails() {
-    let mails = storageService.loadFromStorage(STORAGE_KEY) || null
-    if (!mails) {
+    let gMails = storageService.loadFromStorage(STORAGE_KEY) || null
+    if (!gMails) {
         console.log("!mails");
-        mails = _createMails()
+        gMails = _createMails()
     }
-    gMails = mails
     storageService.saveToStorage(STORAGE_KEY, gMails)
     return Promise.resolve(gMails)
+}
+
+function starMail(mailId) {
+    let gMails = storageService.loadFromStorage(STORAGE_KEY)
+    const mailIdx = gMails.findIndex((mail) => {
+        return mailId === mail.id
+    })
+    gMails[mailIdx].isStared = !gMails[mailIdx].isStared
+    storageService.saveToStorage(STORAGE_KEY, gMails)
+    console.log("stars changed", gMails[mailIdx].isStared);
+    return Promise.resolve()
 }
 
 function trashMail(mailId) {
@@ -46,7 +58,7 @@ function _createMails() {
         isStared: false,
         isSent: false,
         labels: [],
-        sentAt: 1661339901939,
+        sentAt: 1651339901939,
         isTrashed: false
     },
     {
@@ -56,11 +68,11 @@ function _createMails() {
         fullName: "Roy Yam",
         subject: "Look at the meme",
         body: "HAHA look at this funny meme",
-        isRead: false,
+        isRead: true,
         isStared: false,
         isSent: false,
         labels: [],
-        sentAt: 1661329901939,
+        sentAt: 1461329901939,
         isTrashed: false
     },
     {
@@ -74,7 +86,7 @@ function _createMails() {
         isStared: false,
         isSent: false,
         labels: [],
-        sentAt: 1661319901939,
+        sentAt: 1261319901939,
         isTrashed: false
     },
     {

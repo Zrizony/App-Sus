@@ -1,13 +1,56 @@
 .mail-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
   text-align: left;
-  border: 1px solid black;
+  border-bottom: 1px solid rgb(231, 226, 226);
+}
+.mail-item:first-child {
+  border-top: 1px solid rgb(231, 226, 226);
+}
+
+.mail-item:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 18px -4px #fefff5;
 }
 
 .mail-item .star {
-  color: #717172;
-  cursor: pointer;
+  color: #969696;
 }
+
 .mail-item .star:hover {
   color: aliceblue;
   text-shadow: 0px 0px 20px #888484;
+}
+
+.mail-item .body {
+  color: #969696;
+}
+
+.mail-item span {
+  margin-right: 15px;
+}
+
+.mail-item .delete {
+  color: #969696;
+  cursor: pointer;
+}
+
+.mail-item .delete:hover {
+  color: aliceblue;
+  text-shadow: 0px 0px 10px #cec9c9;
+}
+
+.mail-item .envelop {
+  color: #969696;
+  cursor: pointer;
+}
+
+.mail-item .envelop:hover {
+  color: aliceblue;
+  text-shadow: 0px 0px 10px #cec9c9;
+}
+
+.stared {
+  color: yellow;
 }
