@@ -1,9 +1,9 @@
 @font-face {
   font-family: product-sans-regular;
-  src: url(/assets/fonts/Product-Sans/Product-Sans-Regular.ttf);
+  src: url(../../fonts/Product-Sans/Product-Sans-Regular.ttf);
 }
 
 @font-face {
   font-family: product-sans-bold;
-  src: url(/assets/fonts/Product-Sans/Product-Sans-Bold.ttf);
+  src: url(../../fonts/Product-Sans/Product-Sans-Bold.ttf);
 }
