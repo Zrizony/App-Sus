@@ -167,7 +167,7 @@ function _createNotes() {
       isPinned: false,
       info: {
         url: 'https://m.media-amazon.com/images/M/MV5BZjRhMTBlYmEtZGI1Zi00OTRjLWEwOGEtOTY0YjIzYjljYjY4XkEyXkFqcGdeQXVyNTMyODM3MTg@._V1_FMjpg_UX1000_.jpg',
-        title: 'MASTER-PIECE',
+        title: 'True work of art',
       },
       style: {
         backgroundColor: '#FFF475',
