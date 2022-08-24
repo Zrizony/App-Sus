@@ -13,7 +13,7 @@ export function NoteVideo(props) {
         onClick={(ev) => props.onPin(ev, note.id)}
       ></button>
       <iframe
-        width="100%"
+        width="99%"
         height="300px"
         src={`https://www.youtube.com/embed/${videoId}`}
       ></iframe>
