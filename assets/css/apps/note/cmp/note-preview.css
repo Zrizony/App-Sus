@@ -1,0 +1,163 @@
+.note-preview {
+    position: relative;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    background-color: aliceblue;
+    margin-bottom: 10px;
+  
+    break-inside: avoid-column;
+  }
+  
+  .pin-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    outline: none;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    font-size: 1.05rem;
+    border-radius: 40px;
+    padding: none;
+    opacity: 0;
+    transition: 0.3s;
+    color: rgb(91, 91, 91);
+  }
+  
+  .pin-btn.pinned {
+    opacity: 1;
+    color: rgb(24, 24, 24);
+  }
+  
+  .pin-btn.video {
+    top: unset;
+    bottom: 5px;
+    right: 5px;
+  }
+  
+  .note-preview:hover .pin-btn {
+    opacity: 1;
+  }
+  .pin-btn:hover {
+    color: rgb(24, 24, 24);
+    background-color: rgba(95, 99, 104, 0.157);
+  }
+  
+  .note-preview:hover {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+  }
+  
+  .note-preview:hover .preview-toolbar {
+    opacity: 1;
+  }
+  
+  .note-preview .note-video-container {
+    width: 350px;
+  }
+  
+  .note-preview > .note-text-container {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .note-preview .note-img-container {
+    background-color: transparent;
+  }
+  
+  .note-text-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .note-title {
+    font-weight: 800;
+    height: auto;
+    font-size: 1.1rem;
+    flex-basis: 30%;
+    font-family: open-sans;
+    letter-spacing: 1px;
+  }
+  
+  .note-text {
+    margin-top: 5px;
+  
+    font-size: 14px;
+    font-family: open-sans;
+  }
+  
+  .todos-title {
+    font-weight: 800;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .todos-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .todos-container ul {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  
+  .todos-container p {
+    margin: 0;
+  }
+  
+  .todos-container li {
+    display: flex;
+    margin-top: 8px;
+    margin-bottom: 6px;
+  }
+  
+  .todos-container li p {
+    padding-left: 10px;
+  }
+  
+  .todo-checked {
+    text-decoration: line-through;
+    color: #5f6368;
+  }
+  
+  .seperator {
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.194);
+  }
+  
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 0;
+    align-self: center;
+    outline: none;
+    border: none;
+    background-color: unset;
+    font-size: 16px;
+    color: #4e4e4e;
+  }
+  
+  .checkbox:hover {
+    color: black;
+  }
+  
+  @media (min-width: 620px) {
+    .note-preview {
+      margin-right: 10px;
+    }
+  }
