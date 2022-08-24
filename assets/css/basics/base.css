@@ -1,0 +1,38 @@
+body {
+  box-sizing: border-box;
+  text-align: center;
+  margin: 0;
+  font-family: product-sans-regular;
+  background-color: var(--main-bg-color);
+  color: var(--color1);
+  font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+button:hover {
+  cursor: pointer;
+}

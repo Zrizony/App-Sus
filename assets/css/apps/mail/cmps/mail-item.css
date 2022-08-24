@@ -1,0 +1,13 @@
+.mail-item {
+  text-align: left;
+  border: 1px solid black;
+}
+
+.mail-item .star {
+  color: #717172;
+  cursor: pointer;
+}
+.mail-item .star:hover {
+  color: aliceblue;
+  text-shadow: 0px 0px 20px #888484;
+}

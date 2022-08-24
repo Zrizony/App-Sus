@@ -1,0 +1,25 @@
+header {
+  background: var(--secondary-bg-color);
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 10px;
+}
+
+.app-header nav > *:not(:last-child) {
+  margin-inline-end: 30px;
+}
+
+nav a {
+  margin: 0.5em;
+}
+
+nav a.active {
+  font-family: product-sans-bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}

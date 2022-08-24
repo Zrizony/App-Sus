@@ -1,0 +1,11 @@
+:root {
+  --main-bg-color: #525355;
+  --secondary-bg-color: #202124;
+
+  --color1: #f4f4f4;
+
+  /* mq variables */
+  --large: 980px;
+  --medium: 800px;
+  --small: 500px;
+}
