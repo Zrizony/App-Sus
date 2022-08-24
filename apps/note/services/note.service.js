@@ -166,7 +166,7 @@ function _createNotes() {
       type: 'note-img',
       isPinned: false,
       info: {
-        url: '../../../assets/img/bbtcat.png',
+        url: '../../assets/img/bbtcat.png',
         title: 'Bob for hire',
       },
       style: {
