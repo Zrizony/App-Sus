@@ -70,7 +70,6 @@ export class NotePreview extends React.Component {
             note={note}
             onChangeNoteColor={this.onChangeNoteColor}
             onDeleteNote={this.props.onDeleteNote}
-            onDuplicateNote={this.props.onDuplicateNote}
             onPin={this.onPin}
             isPinned={this.state.isPinned}
           />

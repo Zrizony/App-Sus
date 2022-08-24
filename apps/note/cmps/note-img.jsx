@@ -28,7 +28,6 @@ export class NoteImg extends React.Component {
             noteId={this.props.note.id}
             onChangeNoteColor={this.props.onChangeNoteColor}
             onDeleteNote={this.props.onDeleteNote}
-            onDuplicateNote={this.props.onDuplicateNote}
           />
         </div>
       </div>

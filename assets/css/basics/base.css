@@ -2,10 +2,10 @@ body {
   box-sizing: border-box;
   text-align: center;
   margin: 0;
-  font-family: product-sans-regular;
   background-color: var(--main-bg-color);
   color: var(--color1);
   font-weight: normal;
+  font-family: product-sans-regular;
 }
 
 h1,
@@ -45,4 +45,8 @@ textarea {
   resize: none;
   outline: none;
   border: unset;
+}
+
+input {
+  font-family: product-sans-regular;
 }

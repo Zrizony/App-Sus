@@ -49,12 +49,6 @@ export class NoteApp extends React.Component {
         .then((notes) => this.setState((prevState) => ({ ...prevState, notes })))
     }
   
-    onDuplicateNote = (noteId) => {
-      noteService
-        .duplicateNote(noteId)
-        .then((notes) => this.setState((prevState) => ({ ...prevState, notes })))
-    }
-  
     loadNotes = () => {
       const { filterBy } = this.state
       noteService.query(filterBy).then((notes) => {
@@ -71,7 +65,6 @@ export class NoteApp extends React.Component {
             <NoteList
               notes={notes}
               onDeleteNote={this.onDeleteNote}
-              onDuplicateNote={this.onDuplicateNote}
               onPinNote={this.onPinNote}
             />
           </section>

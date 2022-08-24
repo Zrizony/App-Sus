@@ -10,7 +10,6 @@ export const noteService = {
   addNote,
   changeNoteColor,
   deleteNote,
-  duplicateNote,
   toggleTodoCheck,
   togglePin,
 }
@@ -254,23 +253,6 @@ function deleteNote(noteId) {
   const notes = _loadFromStorage()
   const idx = notes.findIndex((note) => note.id === noteId)
   notes.splice(idx, 1)
-  _sortByPinned(notes)
-  _saveToStorage(notes)
-  return Promise.resolve(notes)
-}
-
-function duplicateNote(noteId) {
-  const notes = _loadFromStorage()
-  const note = notes.find((note) => {
-    return noteId === note.id
-  })
-  const duplicateNote = { ...note }
-  duplicateNote.id = utilService.makeId()
-  duplicateNote.isPinned = false
-  notes.unshift(duplicateNote)
-  if (duplicateNote.info.todo.length) {
-    _sortByChecked(duplicateNote.info.todo)
-  }
   _sortByPinned(notes)
   _saveToStorage(notes)
   return Promise.resolve(notes)
