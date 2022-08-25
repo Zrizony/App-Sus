@@ -27,18 +27,20 @@ function query(filterBy) {
     }
   })
   if (filterBy) {
-    filterBy = filterBy.toLowerCase()
-    const filteredNotes = notes.filter((note) => {
+    let { searchInput } = filterBy
+    searchInput = searchInput.toLowerCase()
+
+    let filteredNotes = notes.filter((note) => {
       if (note.type === 'note-todo')
         return (
-          note.info.title.toLowerCase().includes(filterBy) ||
-          _filterTodo(note.info.todo, filterBy)
+          note.info.title.toLowerCase().includes(searchInput) ||
+          _filterTodo(note.info.todo, searchInput)
         )
       else {
         return note.info.title
-          ? note.info.title.toLowerCase().includes(filterBy)
+          ? note.info.title.toLowerCase().includes(searchInput)
           : '' || note.info.txt
-          ? note.info.txt.toLowerCase().includes(filterBy)
+          ? note.info.txt.toLowerCase().includes(searchInput)
           : ''
       }
     })
@@ -60,7 +62,7 @@ function _createNotes() {
       type: 'note-img',
       isPinned: false,
       info: {
-        title: 'Dont forget to breath',
+        title: 'Don\'t forget to breath',
         txt: '',
         url: '../../../assets/img/breath.jpg',
         todo: [],
@@ -168,6 +170,7 @@ function _createNotes() {
       isPinned: false,
       info: {
         videoId: '0Xtbnfcxxco',
+        title: 'Childhood',
       },
       style: {
         backgroundColor: '#FDCFE8',
@@ -175,7 +178,6 @@ function _createNotes() {
     },
   ]
   _saveToStorage(notes)
-  console.log(notes)
   return notes
 }
 
@@ -189,7 +191,7 @@ function addNote(note) {
       if (!noteInfo.url) return
       break
     case 'note-video':
-      if (!noteInfo.url) return
+      if (!noteInfo.videoId) return
       break
     case 'note-todo':
       if (!noteInfo.todo.length) return
@@ -244,6 +246,8 @@ function duplicateNote(noteId) {
     return noteId === note.id
   })
   const duplicateNote = { ...note }
+  console.log('duplicateNote:', duplicateNote);
+
   duplicateNote.id = utilService.makeId()
   duplicateNote.isPinned = false
   notes.unshift(duplicateNote)

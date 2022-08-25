@@ -1,8 +1,9 @@
 import { noteService } from '../services/note.service.js'
 import { NoteTypeBtns } from './note-type-btns.jsx'
-import { CreateTodo } from '../cmps/createNote.jsx'
+// import { CreateTodo } from './create-todo-note.jsx'
 
 export class NoteAdd extends React.Component {
+
   state = {
     isActive: false,
     noteType: 'note-txt',
@@ -10,7 +11,7 @@ export class NoteAdd extends React.Component {
       title: '',
       txt: '',
       url: '',
-      todos: [],
+      todo: [],
     },
   }
 
@@ -28,15 +29,14 @@ export class NoteAdd extends React.Component {
   onAddNote = (ev) => {
     ev.preventDefault()
     const note = this.state
+    note.noteInfo.todo = []
     if (
       !note.noteInfo.title.length &&
-      !note.noteInfo.todos.length &&
+      !note.noteInfo.todo.length &&
       !note.noteInfo.txt.length &&
       !note.noteInfo.url.length
-    )
-      return
-    noteService
-      .addNote(note)
+    ) return
+    noteService.addNote(note)
       .then(
         this.setState({
           isActive: false,
@@ -45,7 +45,7 @@ export class NoteAdd extends React.Component {
             title: '',
             txt: '',
             url: '',
-            todos: [],
+            todo: [],
           },
         })
       )
@@ -65,20 +65,38 @@ export class NoteAdd extends React.Component {
     const value = ev.target.value
 
     this.setState((prevState) => ({ ...prevState, noteType: value }))
+    console.log('onChangeType', this.inputRef.current);
     this.inputRef.current.focus()
   }
 
+  //---- for to-do note only ----//
+  clearTodoLine = () => {
+    const { todo } = this.state.noteInfo
+    return todo.filter((task) => {
+      return task !== ''
+    })
+  }
+  handleChangeTodo = (ev, idx) => {
+    let { todo } = this.state.noteInfo
+    todo[idx] = ev.target.value
+    // todo = this.clearTodoLine()
+    this.handleChange({ target: { value: todo, name: 'todo' } })
+    console.log('todo', todo);
+    todo.push('')
+    this.setState({ todo })
+  }
+
+  //---- render ----//
   render() {
-    const { txt, title, url } = this.state.noteInfo
+    const { txt, title, url, todo } = this.state.noteInfo
     const { isActive, noteType } = this.state
     return (
       <div className="note-add">
         <form
           onSubmit={this.onAddNote}
           onBlur={(ev) => {
-            this.onExpandInput(ev, false)
-          }}
-        >
+            this.onExpandInput(ev, true)
+          }}>
           <input
             className={`note-add-title ${isActive ? '' : 'hide'}`}
             type="text"
@@ -113,15 +131,27 @@ export class NoteAdd extends React.Component {
               ref={this.inputRef}
             />
           )}
-          {noteType === 'note-todos' && (
-            <CreateTodo handleChange={this.handleChange} />
+          {noteType === 'note-todo' && (
+            // <CreateTodo handleChange={this.handleChange} />
+            todo.map((task, idx) => console.log('task', task)(
+              <input
+              type="text"
+              key={idx}
+              placeholder="List item"
+              value={task}
+              className="todo-line"
+              autoComplete="off"
+              onFocus={(ev) => this.onExpandInput(ev, true)}
+              onChange={(ev) => this.handleChangeTodo(ev, idx)}
+              />
+            ))
           )}
           {noteType === 'note-video' && (
             <input
               name="txt"
               autoComplete="off"
               type="text"
-              placeholder="Enter Video URL"
+              placeholder="Enter Video embed URL"
               value={url}
               onFocus={(ev) => this.onExpandInput(ev, true)}
               onChange={this.handleChange}

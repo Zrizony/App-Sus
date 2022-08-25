@@ -27,5 +27,6 @@
 @import "./apps/note/cmp/note-list.css";
 @import "./apps/note/cmp/note-preview.css";
 @import "./apps/note/cmp/note-video.css";
+@import "./apps/note/cmp/note-filter.css";
 
 @import "./apps/note/views/note-app.css";

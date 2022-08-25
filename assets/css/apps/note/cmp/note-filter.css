@@ -1,0 +1,27 @@
+.note-filter {
+  position: absolute;
+  top: .5em;
+}
+
+.note-filter input {
+  border: 0;
+  height: 46px;
+  width: 30em;
+  padding-left: 50px;
+  border-radius: 8px;
+}
+
+.note-filter input:focus {
+  outline: none;
+}
+
+.note-filter i{
+    position: absolute;
+    padding-top: 14px;
+    padding-left: 10px;
+    color: rgba(69, 69, 69, 0.5);
+    min-width: 30px;
+    text-align: center;
+    font-size: 1.3em;
+    border: 0;
+}

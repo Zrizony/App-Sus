@@ -12,14 +12,14 @@ export class NoteTodo extends React.Component {
   }
 
   onToggleCheck = (todoIdx, noteId) => {
-    noteService
-      .toggleTodoCheck(todoIdx, noteId)
+    noteService.toggleTodoCheck(todoIdx, noteId)
       .then((todo) => this.setState({ todo }))
   }
 
   render() {
-    const { todo: todo } = this.state
+    const { todo } = this.state
     const { note } = this.props
+    
     return (
       <div className="todo-container">
         {note.info.title && (

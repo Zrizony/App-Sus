@@ -23,6 +23,7 @@ export class NotePreview extends React.Component {
       }))
     })
   }
+
   onPin = (ev, noteId) => {
     ev.stopPropagation()
     ev.preventDefault()
@@ -60,12 +61,11 @@ export class NotePreview extends React.Component {
         : {
             backgroundColor: note.style.backgroundColor,
             border: '1px solid transparent',
-            // borderColor: '#e0e0e0',
           }
 
     return (
-      <div className='note-preview-shadow-protection'>
-        <div className='note-preview' style={inlineStyle}>
+      <div className="note-preview-shadow-protection">
+        <div className="note-preview" style={inlineStyle}>
           <DynamicCmp
             note={note}
             onChangeNoteColor={this.onChangeNoteColor}
@@ -79,4 +79,3 @@ export class NotePreview extends React.Component {
     )
   }
 }
-

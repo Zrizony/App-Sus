@@ -1,19 +1,20 @@
 export function NoteTypeBtns({ onChangeType }) {
+
   return (
     <div className="type-btns">
       <button
         className="btn-text fa-solid fa-font"
         value="note-txt"
         onClick={onChangeType}
-      ></button>
+        ></button>
       <button
         className="btn-img fa-solid fa-image"
         value="note-img"
         onClick={onChangeType}
-      ></button>
+        ></button>
       <button
-        className="btn-todos fa-solid fa-list"
-        value="note-todos"
+        className="btn-todo fa-solid fa-list"
+        value="note-todo"
         onClick={onChangeType}
       ></button>
       <button

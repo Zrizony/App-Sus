@@ -17,7 +17,6 @@
 .note-add form {
   border-radius: 8px;
   border: none;
-
   outline: none;
   position: relative;
 }
@@ -33,7 +32,7 @@
 }
 
 .note-add form input::placeholder {
-  color: #202124;
+  color: #2f303380;
 }
 
 .note-add form input:first-child {
