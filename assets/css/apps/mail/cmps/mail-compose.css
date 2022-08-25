@@ -1,0 +1,23 @@
+.mail-compose {
+  position: fixed;
+  bottom: 5px;
+  left: 260px;
+  height: 600px;
+}
+.mail-compose form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mail-compose .to {
+  color: black;
+  position: absolute;
+}
+
+.mail-compose .toInput {
+  padding-left: 20px;
+}
+
+.mail-compose textarea {
+  resize: none;
+}

@@ -18,3 +18,5 @@
 @import "./cmps/app-header.css";
 @import "./apps/mail/cmps/mail-item.css";
 @import "./apps/mail/cmps/mail-filter.css";
+@import "./apps/mail/cmps/mail-sidebar.css";
+@import "./apps/mail/cmps/mail-compose.css";

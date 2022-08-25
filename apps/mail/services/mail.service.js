@@ -5,7 +5,8 @@ export const mailService = {
     query,
     starMail,
     trashMail,
-    envelopClick
+    envelopClick,
+    unreadMails
 }
 
 const STORAGE_KEY = 'mailDB'
@@ -18,7 +19,22 @@ function query(filterBy) {
         console.log("!mails");
         gMails = _createMails()
     }
+    gMails.sort((a, b) => b.sentAt - a.sentAt)
     storageService.saveToStorage(STORAGE_KEY, gMails)
+
+    if (filterBy) {
+        const { searchInput } = filterBy
+        if (searchInput.length > 2) {
+
+            gMails = gMails.filter((mail) => {
+                return (mail.subject.toLowerCase().includes(searchInput.toLowerCase()) ||
+                    mail.body.toLowerCase().includes(searchInput.toLowerCase()))
+
+            })
+        }
+
+    }
+
     return Promise.resolve(gMails)
 }
 
@@ -60,6 +76,15 @@ function trashMail(mailId) {
     }
 }
 
+function unreadMails() {
+    let gMails = storageService.loadFromStorage(STORAGE_KEY)
+    gMails = gMails.filter((mail) => {
+        return !mail.isRead
+    })
+    console.log("length: ", gMails.length);
+    return gMails.length
+}
+
 function _createMails() {
     return [{
         id: utilService.makeId(),
@@ -87,6 +112,20 @@ function _createMails() {
         isSent: false,
         labels: [],
         sentAt: 1461329901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "RoyYam@gmail.com",
+        to: "me@appsus.com",
+        fullName: "Roy Yam",
+        subject: "Look at the meme",
+        body: "HAHA look at this funny meme",
+        isRead: true,
+        isStared: false,
+        isSent: false,
+        labels: [],
+        sentAt: 1561329901939,
         isTrashed: false
     },
     {

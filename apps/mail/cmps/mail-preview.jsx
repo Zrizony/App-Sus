@@ -11,6 +11,10 @@ export class MailPreview extends React.Component {
         this.setState({ mail: this.props.mail })
     }
 
+    componentDidUpdate() {
+        // console.log("Mail preview did update");
+    }
+
     renderDate = () => {
         const { sentAt } = this.props.mail
         const currTime = Date.now()
@@ -26,14 +30,6 @@ export class MailPreview extends React.Component {
         }
     }
 
-    isEnvelopOpen = () => {
-        if (this.state.mail.isRead) {
-            return <i className="fa-regular fa-envelope-open"></i>
-        } else {
-            return <i className="fa-regular fa-envelope"></i>
-        }
-    }
-
     onEnvelopClick = (ev) => {
         ev.stopPropagation()
 
@@ -43,6 +39,14 @@ export class MailPreview extends React.Component {
                     mail: { ...mail, isRead: !this.state.mail.isRead }
                 }))
             })
+    }
+
+    isEnvelopOpen = () => {
+        if (this.state.mail.isRead) {
+            return <i className="fa-regular fa-envelope-open"></i>
+        } else {
+            return <i className="fa-regular fa-envelope"></i>
+        }
     }
 
     checkIfRead = () => {
@@ -86,6 +90,7 @@ export class MailPreview extends React.Component {
     render() {
         if (!this.state.mail) return <div>Loading...</div>
         const { id, fullName, subject, body, isRead, isStared } = this.state.mail
+        console.log("isRead", isRead);
 
 
         return <li onClick={this.onOpenMail} className={`mail-item ${(isRead ? "read" : '')}`}>
@@ -105,7 +110,7 @@ export class MailPreview extends React.Component {
             <span onClick={(ev) => { this.props.onTrashMail(ev, id) }} className="delete">
                 <i className="fa-regular fa-trash-can"></i>
             </span>
-            <span onClick={this.onEnvelopClick} className="envelop">
+            <span onClick={(ev) => { this.onEnvelopClick(ev, id) }} className="envelop">
                 {this.isEnvelopOpen()}
             </span>
             <span className="date">

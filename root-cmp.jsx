@@ -12,7 +12,7 @@ export function App() {
         <section className="app main-layout">
             <AppHeader />
             <Switch>
-                <Route path="/mail" component={MailApp} />
+                <Route path="/mail/:folder" component={MailApp} />
                 <Route path="/note" component={NoteApp} />
                 <Route path="/about" component={About} />
                 <Route exact path="/" component={Home} />

@@ -1,0 +1,9 @@
+.mail-sidebar {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  background-color: var(--secondary-bg-color);
+  cursor: pointer;
+  width: 256px;
+  height: 100%;
+}

@@ -5,7 +5,12 @@ header {
 .app-header {
   display: flex;
   justify-content: space-between;
-  padding: 14px 10px;
+  align-items: center;
+  padding: 8px 10px;
+}
+
+.app-header a {
+  height: 48px;
 }
 
 .app-header nav > *:not(:last-child) {
