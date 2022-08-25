@@ -57,6 +57,7 @@ export class NoteTodo extends React.Component {
           noteId={this.props.note.id}
           onChangeNoteColor={this.props.onChangeNoteColor}
           onDeleteNote={this.props.onDeleteNote}
+          onDuplicateNote={this.props.onDuplicateNote}
         />
       </div>
     )

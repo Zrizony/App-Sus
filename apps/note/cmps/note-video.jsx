@@ -1,9 +1,8 @@
 import { NoteEditor } from './note-editor.jsx'
 
 export function NoteVideo(props) {
-    console.log(props.note);
   const { videoId } = props.note.info
-  const { note, onChangeNoteColor, onDeleteNote } = props
+  const { note, onChangeNoteColor, onDeleteNote, onDuplicateNote } = props
   return (
     <div className="note-video-container">
       <button
@@ -23,6 +22,7 @@ export function NoteVideo(props) {
           noteId={note.id}
           onChangeNoteColor={onChangeNoteColor}
           onDeleteNote={onDeleteNote}
+          onDuplicateNote={onDuplicateNote}
         />
       </div>
     </div>
