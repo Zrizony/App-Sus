@@ -17,18 +17,18 @@ export class MailCompose extends React.Component {
                 ...newMail,
                 [field]: value
             }
-        }), () => {
-
-        })
+        }))
 
     }
+
+
 
     render() {
         const { to, subject, bodyText } = this.state
 
         return <section className="mail-compose">
-            <div className="compose title">New Message<button>X</button></div>
-            <form>
+            <div className="compose title">New Message<button onClick={this.props.onCloseCompose}>X</button></div>
+            <form onSubmit={(ev) => { this.props.onSubmitCompose(ev, this.state.newMail) }}>
                 <label className="to">To</label>
                 <input
                     className="toInput"
@@ -39,6 +39,8 @@ export class MailCompose extends React.Component {
                 />
                 <input
                     className="subject"
+                    placeholder="Subject"
+
                     type="text"
                     name="subject"
                     value={subject}
@@ -48,7 +50,7 @@ export class MailCompose extends React.Component {
                     className="bodyText"
                     type="textarea"
                     name="bodyText"
-                    value={subject}
+                    value={bodyText}
                     onChange={this.handleChange}
                 />
                 <button>Send</button>

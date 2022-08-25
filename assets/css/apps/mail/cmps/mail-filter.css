@@ -1,6 +1,7 @@
 .mail-filter {
   position: absolute;
   top: 8px;
+  left: 300px;
 }
 
 .mail-filter i {

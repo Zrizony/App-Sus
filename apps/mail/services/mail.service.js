@@ -6,12 +6,12 @@ export const mailService = {
     starMail,
     trashMail,
     envelopClick,
-    unreadMails
+    unreadMails,
+    addSentMail
 }
 
 const STORAGE_KEY = 'mailDB'
 
-// let gMails;
 
 function query(filterBy) {
     let gMails = storageService.loadFromStorage(STORAGE_KEY)
@@ -34,6 +34,7 @@ function query(filterBy) {
         }
 
     }
+
 
     return Promise.resolve(gMails)
 }
@@ -83,6 +84,28 @@ function unreadMails() {
     })
     console.log("length: ", gMails.length);
     return gMails.length
+}
+
+function addSentMail(to, subject, bodyText) {
+    let gMails = storageService.loadFromStorage(STORAGE_KEY)
+    const newSent = {
+        id: utilService.makeId(),
+        from: "me@appsus.com",
+        to: to,
+        fullName: 'Barak',
+        subject: subject,
+        body: bodyText,
+        isRead: false,
+        isStared: false,
+        isSent: true,
+        labels: [],
+        sentAt: Date.now(),
+        isTrashed: false
+    }
+    gMails.push(newSent)
+    storageService.saveToStorage(STORAGE_KEY, gMails)
+
+    return Promise.resolve()
 }
 
 function _createMails() {
@@ -146,7 +169,7 @@ function _createMails() {
         id: utilService.makeId(),
         from: "me@appsus.com",
         to: "jesus@jesus.com",
-        fullName: "barak",
+        fullName: "Barak",
         subject: "you know what to do!",
         body: "pls send help!",
         isRead: false,
@@ -169,5 +192,76 @@ function _createMails() {
         labels: ["Spam"],
         sentAt: 1661299901939,
         isTrashed: true
-    }]
+    },
+    {
+        id: utilService.makeId(),
+        from: "LinkedIn@appsus.com",
+        to: "me@appsus.com",
+        fullName: "LinkedIn Job Alerts",
+        subject: "1 new job for 'web developer",
+        body: "you had one job.",
+        isRead: false,
+        isStared: false,
+        isSent: false,
+        labels: ["Spam"],
+        sentAt: 1661299901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "dropbox@appsus.com",
+        to: "me@appsus.com",
+        fullName: "Dropbox",
+        subject: "So many people changed stuff",
+        body: "around 849k items has been changed in your very own folder!",
+        isRead: false,
+        isStared: false,
+        isSent: false,
+        labels: ["Spam"],
+        sentAt: 1661299901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "google@appsus.com",
+        to: "me@appsus.com",
+        fullName: "Google",
+        subject: "Some google stuff",
+        body: "you have security alert ",
+        isRead: false,
+        isStared: false,
+        isSent: false,
+        labels: ["Spam"],
+        sentAt: 1661299901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "udemy@appsus.com",
+        to: "me@appsus.com",
+        fullName: "Udemy",
+        subject: "Check out this amazing Sale!",
+        body: "click here to see many many sales in udem website",
+        isRead: false,
+        isStared: false,
+        isSent: false,
+        labels: ["Spam"],
+        sentAt: 1661299901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "reddit@appsus.com",
+        to: "me@appsus.com",
+        fullName: "Reddit",
+        subject: "Webb Telescope Shatters Distance Records, Challenges Big Bang Theory",
+        body: "Space is Amazing!!",
+        isRead: false,
+        isStared: false,
+        isSent: false,
+        labels: ["Spam"],
+        sentAt: 1661299901939,
+        isTrashed: false
+    },
+    ]
 }

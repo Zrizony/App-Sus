@@ -1,12 +1,12 @@
 const { Link, NavLink, withRouter } = ReactRouterDOM
 
 
-export function MailSideBar() {
+export function MailSideBar({ onCompose }) {
 
 
     return <div className="mail-sidebar">
         <div className="compose">
-
+            <button onClick={onCompose}>Compose</button>
         </div>
 
         <NavLink to='/mail/inbox'>
