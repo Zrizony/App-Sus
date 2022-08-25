@@ -77,27 +77,27 @@ function _createNotes() {
       isPinned: false,
       info: {
         title: 'Groceries',
-        txt: '',
+        text: '',
         url: '',
         todo: [
           {
-            txt: 'Water',
+            text: 'Water',
             isChecked: false,
           },
           {
-            txt: 'Milk',
+            text: 'Milk',
             isChecked: true,
           },
           {
-            txt: 'Bread',
+            text: 'Bread',
             isChecked: false,
           },
           {
-            txt: 'Rice',
+            text: 'Rice',
             isChecked: true,
           },
           {
-            txt: 'Toiler Paper',
+            text: 'Toiler Paper',
             isChecked: false,
           },
         ],
@@ -112,23 +112,23 @@ function _createNotes() {
       isPinned: true,
       info: {
         title: 'Todo list for tomorrow',
-        txt: '',
+        text: '',
         url: '',
         todo: [
           {
-            txt: 'Eat',
+            text: 'Eat',
             isChecked: true,
           },
           {
-            txt: 'Sleep',
+            text: 'Sleep',
             isChecked: true,
           },
           {
-            txt: 'Code',
+            text: 'Code',
             isChecked: false,
           },
           {
-            txt: 'Repeat',
+            text: 'Repeat',
             isChecked: false,
           },
         ],
@@ -195,10 +195,9 @@ function addNote(note) {
       break
     case 'note-todo':
       if (!noteInfo.todo.length) return
-      noteInfo.todo = noteInfo.todo
-        .filter((task) => task.length >= 1)
-        .map((task) => ({ txt: task }))
-      console.log(noteInfo.todo)
+      noteInfo.todo = noteInfo.todo.filter((task) => task.length >= 1)
+                      .map((task) => ({ text: task }))
+      console.log('noteInfo.todo', noteInfo.todo)
       break
   }
   const newNote = {

@@ -3,7 +3,7 @@ import { NoteEditor } from './note-editor.jsx'
 
 export class NoteTodo extends React.Component {
   state = {
-    todo: [],
+    todo: [''],
   }
 
   componentDidMount() {
@@ -48,7 +48,7 @@ export class NoteTodo extends React.Component {
                 onClick={() => this.onToggleCheck(idx, note.id)}
               ></button>
               <p className={`${todo.isChecked ? 'todo-checked' : ''}`}>
-                {todo.txt}
+                {todo.text}
               </p>
             </li>
           ))}

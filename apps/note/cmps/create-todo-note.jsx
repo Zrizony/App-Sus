@@ -1,6 +1,6 @@
 // export class CreateTodo extends React.Component {
 //   state = {
-//     todo: [],
+//     todo: [''],
 //   }
 
 //   clearTodoLine = () => {
@@ -15,9 +15,9 @@
 //     let { todo } = this.state
 //     todo[idx] = ev.target.value
 //     todo = this.clearTodoLine()
-//     handleChange({ target: { value: task, name: 'todo' } })
-//     console.log('todo', todo);
-//     console.log('task', task);
+//     handleChange({ target: { value: todo, name: 'todo' } })
+//     console.log('todo', todo)
+//     console.log('task', task)
 //     todo.push('')
 //     this.setState({ todo })
 //   }
@@ -27,7 +27,20 @@
 
 //     return (
 //       <React.Fragment>
-        
+//         {todo.map((task, idx) => (
+//           <input
+//             key={idx}
+//             name="todo"
+//             autoComplete="off"
+//             type="text"
+//             placeholder="List item"
+//             value={task}
+//             className="todo-line"
+//             onFocus={(ev) => this.onExpandInput(ev, true)}
+//             onChange={(ev) => this.handleChangeTodo(ev, idx)}
+//             ref={this.inputRef}
+//           />
+//         ))}
 //       </React.Fragment>
 //     )
 //   }

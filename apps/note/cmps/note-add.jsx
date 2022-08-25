@@ -11,7 +11,7 @@ export class NoteAdd extends React.Component {
       title: '',
       txt: '',
       url: '',
-      todo: [],
+      todo: [''],
     },
   }
 
@@ -29,12 +29,11 @@ export class NoteAdd extends React.Component {
   onAddNote = (ev) => {
     ev.preventDefault()
     const note = this.state
-    note.noteInfo.todo = []
     if (
       !note.noteInfo.title.length &&
-      !note.noteInfo.todo.length &&
       !note.noteInfo.txt.length &&
-      !note.noteInfo.url.length
+      !note.noteInfo.url.length &&
+      !note.noteInfo.todo.length
     ) return
     noteService.addNote(note)
       .then(
@@ -45,7 +44,7 @@ export class NoteAdd extends React.Component {
             title: '',
             txt: '',
             url: '',
-            todo: [],
+            todo: [''],
           },
         })
       )
@@ -79,7 +78,7 @@ export class NoteAdd extends React.Component {
   handleChangeTodo = (ev, idx) => {
     let { todo } = this.state.noteInfo
     todo[idx] = ev.target.value
-    // todo = this.clearTodoLine()
+    todo = this.clearTodoLine()
     this.handleChange({ target: { value: todo, name: 'todo' } })
     console.log('todo', todo);
     todo.push('')
@@ -133,16 +132,18 @@ export class NoteAdd extends React.Component {
           )}
           {noteType === 'note-todo' && (
             // <CreateTodo handleChange={this.handleChange} />
-            todo.map((task, idx) => console.log('task', task)(
+            todo.map((task, idx) => (
               <input
-              type="text"
               key={idx}
+              name="todo"
+              autoComplete="off"
+              type="text"
               placeholder="List item"
               value={task}
               className="todo-line"
-              autoComplete="off"
               onFocus={(ev) => this.onExpandInput(ev, true)}
               onChange={(ev) => this.handleChangeTodo(ev, idx)}
+              ref={this.inputRef}
               />
             ))
           )}
