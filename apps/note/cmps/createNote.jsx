@@ -1,30 +1,30 @@
 export class CreateTodo extends React.Component {
   state = {
-    todos: [''],
+    todo: [''],
   }
 
   clearTodoLine = () => {
-    const { todos } = this.state
-    return todos.filter((todo) => {
+    const { todo: task } = this.state
+    return task.filter((todo) => {
       return todo !== ''
     })
   }
 
   handleChangeTodo = (ev, idx) => {
     const { handleChange } = this.props
-    let { todos } = this.state
-    todos[idx] = ev.target.value
-    todos = this.clearTodoLine()
-    handleChange({ target: { value: todos, name: 'todos' } })
-    todos.push('')
-    this.setState({ todos })
+    let { todo: todo } = this.state
+    todo[idx] = ev.target.value
+    todo = this.clearTodoLine()
+    handleChange({ target: { value: todo, name: 'todo' } })
+    todo.push('')
+    this.setState({ todo: todo })
   }
 
   render() {
-    const { todos } = this.state
+    const { todo: todo } = this.state
     return (
       <React.Fragment>
-        {todos.map((todo, idx) => (
+        {todo.map((todo, idx) => (
           <input
             type="text"
             key={idx}

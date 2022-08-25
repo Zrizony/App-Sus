@@ -9,8 +9,8 @@ export const noteService = {
   updateNoteText,
   addNote,
   changeNoteColor,
-  deleteNote,
   duplicateNote,
+  deleteNote,
   toggleTodoCheck,
   togglePin,
 }
@@ -47,22 +47,10 @@ function query(filterBy) {
   return Promise.resolve(notes)
 }
 
-function _filterTodo(todo, filterBy) {
-  return todo.some((task) => task.txt.toLowerCase().includes(filterBy))
-}
-
 function getNoteById(id) {
   let notes = _loadFromStorage()
   const note = notes.find((note) => note.id === id)
   return Promise.resolve(note)
-}
-
-function _loadFromStorage() {
-  return storageService.loadFromStorage(KEY)
-}
-
-function _saveToStorage(notes) {
-  storageService.saveToStorage(KEY, notes)
 }
 
 function _createNotes() {
@@ -72,9 +60,9 @@ function _createNotes() {
       type: 'note-img',
       isPinned: false,
       info: {
-        title: 'Move to Portugal',
+        title: 'Dont forget to breath',
         txt: '',
-        url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png',
+        url: '../../../assets/img/breath.jpg',
         todo: [],
       },
       style: {
@@ -150,7 +138,7 @@ function _createNotes() {
     {
       id: 'TUfens',
       type: 'note-txt',
-      isPinned: false,
+      isPinned: true,
       info: {
         txt: 'Lets init!',
         url: '',
@@ -167,8 +155,8 @@ function _createNotes() {
       type: 'note-img',
       isPinned: false,
       info: {
-        url: '../../../assets/img/bbtcat.png',
-        title: 'Bob for hire',
+        url: 'https://m.media-amazon.com/images/M/MV5BZjRhMTBlYmEtZGI1Zi00OTRjLWEwOGEtOTY0YjIzYjljYjY4XkEyXkFqcGdeQXVyNTMyODM3MTg@._V1_FMjpg_UX1000_.jpg',
+        title: 'True work of art',
       },
       style: {
         backgroundColor: '#FFF475',
@@ -189,22 +177,6 @@ function _createNotes() {
   _saveToStorage(notes)
   console.log(notes)
   return notes
-}
-
-function updateNoteText(updatedNote, inputText, inputTitle) {
-  updatedNote.info.txt = inputText
-  updatedNote.info.title = inputTitle
-  const updatedNotes = updateNote(updatedNote)
-  _saveToStorage(updatedNotes)
-  return Promise.resolve()
-}
-
-function updateNote(updatedNote) {
-  const notes = _loadFromStorage()
-  return notes.map((note) => {
-    if (note.id === updatedNote.id) return updatedNote
-    return note
-  })
 }
 
 function addNote(note) {
@@ -242,21 +214,28 @@ function addNote(note) {
   return Promise.resolve(newNote)
 }
 
+function updateNoteText(updatedNote, inputText, inputTitle) {
+  updatedNote.info.txt = inputText
+  updatedNote.info.title = inputTitle
+  const updatedNotes = updateNote(updatedNote)
+  _saveToStorage(updatedNotes)
+  return Promise.resolve()
+}
+
+function updateNote(updatedNote) {
+  const notes = _loadFromStorage()
+  return notes.map((note) => {
+    if (note.id === updatedNote.id) return updatedNote
+    return note
+  })
+}
+
 function changeNoteColor(noteId, color) {
   const notes = _loadFromStorage()
   const note = notes.find((note) => note.id === noteId)
   note.style.backgroundColor = color
   _saveToStorage(notes)
   return Promise.resolve()
-}
-
-function deleteNote(noteId) {
-  const notes = _loadFromStorage()
-  const idx = notes.findIndex((note) => note.id === noteId)
-  notes.splice(idx, 1)
-  _sortByPinned(notes)
-  _saveToStorage(notes)
-  return Promise.resolve(notes)
 }
 
 function duplicateNote(noteId) {
@@ -271,6 +250,15 @@ function duplicateNote(noteId) {
   if (duplicateNote.info.todo.length) {
     _sortByChecked(duplicateNote.info.todo)
   }
+  _sortByPinned(notes)
+  _saveToStorage(notes)
+  return Promise.resolve(notes)
+}
+
+function deleteNote(noteId) {
+  const notes = _loadFromStorage()
+  const idx = notes.findIndex((note) => note.id === noteId)
+  notes.splice(idx, 1)
   _sortByPinned(notes)
   _saveToStorage(notes)
   return Promise.resolve(notes)
@@ -294,6 +282,8 @@ function togglePin(noteId) {
   _saveToStorage(notes)
   return Promise.resolve(notes)
 }
+
+//---- Private functions - use in this file only! ----//
 function _sortByPinned(notes) {
   return notes.sort((a, b) => {
     if (a.isPinned && !b.isPinned) {
@@ -314,4 +304,16 @@ function _sortByChecked(todo) {
       return 1
     }
   })
+}
+
+function _filterTodo(todo, filterBy) {
+  return todo.some((task) => task.txt.toLowerCase().includes(filterBy))
+}
+
+function _loadFromStorage() {
+  return storageService.loadFromStorage(KEY)
+}
+
+function _saveToStorage(notes) {
+  storageService.saveToStorage(KEY, notes)
 }

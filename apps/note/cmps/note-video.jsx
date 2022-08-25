@@ -1,7 +1,6 @@
 import { NoteEditor } from './note-editor.jsx'
 
 export function NoteVideo(props) {
-    console.log(props.note);
   const { videoId } = props.note.info
   const { note, onChangeNoteColor, onDeleteNote, onDuplicateNote } = props
   return (
@@ -13,7 +12,7 @@ export function NoteVideo(props) {
         onClick={(ev) => props.onPin(ev, note.id)}
       ></button>
       <iframe
-        width="100%"
+        width="99%"
         height="300px"
         src={`https://www.youtube.com/embed/${videoId}`}
       ></iframe>

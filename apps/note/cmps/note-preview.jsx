@@ -45,7 +45,7 @@ export class NotePreview extends React.Component {
           return <NoteText {...props} />
         case 'note-img':
           return <NoteImg {...props} />
-        case 'note-todos':
+        case 'note-todo':
           return <NoteTodo {...props} />
         case 'note-video':
           return <NoteVideo {...props} />
@@ -60,7 +60,7 @@ export class NotePreview extends React.Component {
         : {
             backgroundColor: note.style.backgroundColor,
             border: '1px solid transparent',
-            borderColor: '#e0e0e0',
+            // borderColor: '#e0e0e0',
           }
 
     return (
@@ -69,8 +69,8 @@ export class NotePreview extends React.Component {
           <DynamicCmp
             note={note}
             onChangeNoteColor={this.onChangeNoteColor}
+            onDuplicateNote={this.onDuplicateNote}
             onDeleteNote={this.props.onDeleteNote}
-            onDuplicateNote={this.props.onDuplicateNote}
             onPin={this.onPin}
             isPinned={this.state.isPinned}
           />
