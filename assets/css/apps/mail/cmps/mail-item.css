@@ -1,12 +1,27 @@
+.mail-list {
+  position: relative;
+  top: 50px;
+  left: 256px;
+  width: calc(100% - 256px);
+}
+
 .mail-item {
+  display: flex;
+  align-items: center;
+
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 5px;
   text-align: left;
-  border-bottom: 1px solid rgb(231, 226, 226);
+  border-bottom: 1px solid #969696;
 }
+
+.mail-item .full-name {
+  flex-basis: 15%;
+}
+
 .mail-item:first-child {
-  border-top: 1px solid rgb(231, 226, 226);
+  border-top: 1px solid #969696;
 }
 
 .mail-item:hover {
@@ -15,17 +30,25 @@
 }
 
 .mail-item .star {
+  padding: 5px;
   color: #969696;
 }
 
 .mail-item .star:hover {
   background-color: #e7d0d0;
   border-radius: 50%;
-
+  text-shadow: 0px 0px 20px #888484;
+  transition: 0.3s;
+}
+.mail-item .stared:hover {
+  background-color: #e7d0d0;
+  border-radius: 50%;
   text-shadow: 0px 0px 20px #888484;
 }
 
 .mail-item .body {
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #969696;
 }
 
@@ -54,6 +77,7 @@
 }
 
 .stared {
+  padding: 5px;
   color: gold;
 }
 
@@ -61,4 +85,7 @@
   font-family: product-sans-regular;
   color: #969696;
   background-color: #161616;
+}
+
+.mail-item .date {
 }

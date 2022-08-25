@@ -19,6 +19,7 @@
 @import "./apps/mail/cmps/mail-filter.css";
 @import "./apps/mail/cmps/mail-sidebar.css";
 @import "./apps/mail/cmps/mail-compose.css";
+@import "./apps/mail/cmps/mail-pages.css";
 
 /* notes app */
 @import "./apps/note/cmp/note-add.css";

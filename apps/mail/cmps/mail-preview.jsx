@@ -1,5 +1,8 @@
 import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
+const { Link, NavLink, withRouter } = ReactRouterDOM
+
+
 
 export class MailPreview extends React.Component {
 
@@ -79,21 +82,13 @@ export class MailPreview extends React.Component {
         }
     }
 
-    onOpenMail = () => {
-        console.log("opened mail!!!!!!!!");
-    }
-
-
-
 
 
     render() {
         if (!this.state.mail) return <div>Loading...</div>
         const { id, fullName, subject, body, isRead, isStared } = this.state.mail
-        console.log("isRead", isRead);
 
-
-        return <li onClick={this.onOpenMail} className={`mail-item ${(isRead ? "read" : '')}`}>
+        return <li onClick={() => { this.props.onOpenMail(this.state.mail) }} className={`mail-item ${(isRead ? "read" : '')}`}>
             <span onClick={this.onStarMail} className="">
                 {this.checkIfStared()}
             </span>

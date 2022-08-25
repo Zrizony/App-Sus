@@ -2,7 +2,9 @@
   position: fixed;
   bottom: 5px;
   left: 260px;
-  height: 600px;
+  max-height: 600px;
+  width: 500px;
+  border-radius: 8px;
 }
 .mail-compose form {
   display: flex;
@@ -12,12 +14,20 @@
 .mail-compose .to {
   color: black;
   position: absolute;
+  top: 30px;
+  left: 10px;
 }
 
 .mail-compose .toInput {
-  padding-left: 20px;
+  height: 30px;
+  padding-left: 40px;
 }
 
 .mail-compose textarea {
+  height: 400px;
   resize: none;
+}
+
+.mail-compose .subject {
+  height: 30px;
 }

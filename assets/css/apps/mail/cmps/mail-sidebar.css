@@ -7,3 +7,7 @@
   width: 256px;
   height: 100%;
 }
+
+.mail-sidebar .active {
+  font-weight: bold;
+}
