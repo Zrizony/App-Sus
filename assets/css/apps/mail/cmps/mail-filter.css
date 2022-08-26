@@ -1,18 +1,19 @@
 .mail-filter {
   position: absolute;
   top: 8px;
-  left: 300px;
+  left: 256px;
 }
 
 .mail-filter i {
   position: absolute;
   padding-top: 14px;
   padding-left: 10px;
-  color: rgb(25, 124, 25);
+  color: fff;
   min-width: 30px;
   text-align: center;
   font-size: 1.3em;
   border: 0;
+  color: #969696;
 }
 
 .mail-filter i:hover {
@@ -21,10 +22,26 @@
 }
 
 .mail-filter input {
+  background-color: var(--main-bg-color);
+  color: #fff;
   border: 0;
   height: 46px;
   width: 90%;
   /* padding: 10px; */
   padding-left: 50px;
   border-radius: 8px;
+}
+
+.mail-filter input::placeholder {
+  color: #fff;
+}
+.mail-filter input:focus::placeholder {
+  color: #696969;
+}
+
+.mail-filter input:focus {
+  outline: none;
+  background-color: #fff;
+  color: #696969;
+  transition: 0.2s;
 }

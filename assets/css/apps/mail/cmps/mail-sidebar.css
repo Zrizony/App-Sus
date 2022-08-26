@@ -8,6 +8,59 @@
   height: 100%;
 }
 
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  height: 32px;
+}
+
+.sidebar-item:hover {
+  list-style: none;
+  background-color: #424242;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-right: 15px;
+}
+
+.sidebar-icon {
+  color: #969696;
+  padding-left: 32px;
+  padding-right: 26px;
+}
+
+.mail-sidebar .compose {
+  border-radius: 15px;
+  width: 50%;
+  height: 54px;
+  color: #5f6368;
+  background-color: #ffffff;
+  font-family: product-sans-regular;
+  display: inline-block;
+  border: 0;
+  margin-bottom: 15px;
+  margin-left: -65px;
+}
+
+.mail-sidebar .compose i {
+  padding-right: 5px;
+}
+
 .mail-sidebar .active {
   font-weight: bold;
+}
+
+.mail-sidebar .active .sidebar-item {
+  background-color: #595959;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-right: 15px;
+}
+
+.mail-sidebar .active .sidebar-icon {
+  color: aliceblue;
+}
+
+.mail-sidebar a:hover {
+  text-decoration: none;
 }

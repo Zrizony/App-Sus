@@ -1,20 +1,36 @@
 .mail-compose {
+  background-color: #f2f2f2;
+  color: var(--secondary-bg-color);
   position: fixed;
-  bottom: 5px;
+  z-index: 10;
+  bottom: 0;
   left: 260px;
   max-height: 600px;
   width: 500px;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
+
+.mail-compose input {
+  border: 0;
+  border-bottom: 1px solid #969696;
+  outline: none;
+  margin: 0;
+}
+.mail-compose textarea {
+  border: 0;
+}
+
 .mail-compose form {
   display: flex;
   flex-direction: column;
 }
 
 .mail-compose .to {
-  color: black;
+  font-size: 0.875em;
+  color: #969696;
   position: absolute;
-  top: 30px;
+  top: 38px;
   left: 10px;
 }
 
@@ -29,5 +45,44 @@
 }
 
 .mail-compose .subject {
+  font-size: 0.875em;
   height: 30px;
+  padding-left: 10px;
+}
+.mail-compose .input::placeholder {
+  color: #969696;
+}
+
+.mail-compose button {
+  margin-inline-start: 20px;
+  align-self: flex-start;
+}
+
+.compose-title {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 5px;
+  font-size: 0.875em;
+}
+.compose-title button {
+  align-self: center;
+  background-color: transparent;
+  border: 0;
+  font-size: 0.875em;
+}
+
+.mail-compose .send-button {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #0b57d0;
+  color: #fff;
+  height: 36px;
+  width: 100px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border-radius: 20px;
+  border: 0;
 }
