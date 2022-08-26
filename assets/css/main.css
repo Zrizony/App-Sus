@@ -21,6 +21,8 @@
 @import "./apps/mail/cmps/mail-compose.css";
 @import "./apps/mail/cmps/mail-pages.css";
 
+@import "./apps/mail/views/mail-app.css";
+
 /* notes app */
 @import "./apps/note/cmp/note-add.css";
 @import "./apps/note/cmp/note-editor.css";

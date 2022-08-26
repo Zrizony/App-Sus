@@ -2,3 +2,39 @@
   position: absolute;
   left: 256px;
 }
+
+.pages-content {
+  position: relative;
+  top: 10px;
+  left: 17px;
+}
+
+.mail-pages button {
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  margin-left: 25px;
+}
+
+.mail-pages button:hover {
+  background-color: rgb(107, 107, 107);
+  border-radius: 28px;
+  transition: 0.3s;
+}
+
+.mail-pages .disabled-button {
+  color: #6b6b6b;
+  cursor: unset;
+}
+
+.mail-pages .disabled-button:hover {
+  background-color: unset;
+}
+
+.mail-pages .page-idx {
+  color: #bebebe;
+  margin-left: 25px;
+}

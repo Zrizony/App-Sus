@@ -7,13 +7,16 @@ export function MailPages({ currPageIdx, onNextPage, onPreviewsPage, pageSize, i
 
 
     return <section className="mail-pages">
-        {(currPageIdx <= 0) ?
-            <button onClick={onPreviewsPage} disabled>{'<'}</button> :
-            <button onClick={onPreviewsPage} >{'<'}</button>}
-        {((currPageIdx + 1) * pageSize >= inboxLength) ?
-            <button onClick={onNextPage} disabled>{'>'}</button> :
-            <button onClick={onNextPage}>{'>'}</button>}
-        <span >{currPageIdx}</span>
+        <div className="pages-content">
+
+            {(currPageIdx <= 0) ?
+                <button className="disabled-button" onClick={onPreviewsPage} disabled><i className="fa-solid fa-angle-left"></i></button> :
+                <button onClick={onPreviewsPage} ><i className="fa-solid fa-angle-left"></i></button>}
+            {((currPageIdx + 1) * pageSize >= inboxLength) ?
+                <button className="disabled-button" onClick={onNextPage} disabled><i className="fa-solid fa-angle-right"></i></button> :
+                <button onClick={onNextPage}><i className="fa-solid fa-angle-right"></i></button>}
+            <span className="page-idx">{currPageIdx}</span>
+        </div>
     </section>
 
 }
