@@ -9,6 +9,12 @@ export class MailCompose extends React.Component {
         }
     }
 
+    myRef = React.createRef()
+
+    componentDidMount() {
+        this.myRef.current.focus()
+    }
+
     handleChange = (ev) => {
         const field = ev.target.name
         const value = ev.target.value
@@ -27,11 +33,14 @@ export class MailCompose extends React.Component {
         const { to, subject, bodyText } = this.state
 
         return <section className="mail-compose">
-            <div className="compose title">New Message<button onClick={this.props.onCloseCompose}>X</button></div>
+            <div className="compose-title"><span>New Message</span><button
+                onClick={this.props.onCloseCompose}><i className="fa-solid fa-xmark"></i></button></div>
             <form onSubmit={(ev) => { this.props.onSubmitCompose(ev, this.state.newMail) }}>
                 <label className="to">To</label>
                 <input
+                    ref={this.myRef}
                     className="toInput"
+                    placeholder="Recipient"
                     type="email"
                     name="to"
                     value={to}
@@ -55,7 +64,7 @@ export class MailCompose extends React.Component {
                     onChange={this.handleChange}
                     required
                 />
-                <button>Send</button>
+                <button className="send-button">Send</button>
 
 
 

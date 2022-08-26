@@ -142,7 +142,7 @@ function _createMails() {
         isStared: false,
         isSent: false,
         labels: [],
-        sentAt: 1651339901939,
+        sentAt: 1455555901939,
         isTrashed: false
     },
     {
@@ -164,13 +164,13 @@ function _createMails() {
         from: "RoyYam@gmail.com",
         to: "me@appsus.com",
         fullName: "Roy Yam",
-        subject: "Look at the meme",
-        body: "HAHA look at this funny meme",
+        subject: "Not a Chance",
+        body: "Let's rock this Climbing Session",
         isRead: true,
         isStared: false,
         isSent: false,
         labels: [],
-        sentAt: 1561329901939,
+        sentAt: 1555555901939,
         isTrashed: false
     },
     {
@@ -184,7 +184,7 @@ function _createMails() {
         isStared: false,
         isSent: false,
         labels: [],
-        sentAt: 1261319901939,
+        sentAt: 1361319901939,
         isTrashed: false
     },
     {
@@ -198,7 +198,7 @@ function _createMails() {
         isStared: false,
         isSent: true,
         labels: [],
-        sentAt: 1661309901939,
+        sentAt: 1661659901939,
         isTrashed: false
     },
     {
@@ -212,7 +212,7 @@ function _createMails() {
         isStared: false,
         isSent: false,
         labels: ["Spam"],
-        sentAt: 1661299901939,
+        sentAt: 1661399901939,
         isTrashed: true
     },
     {
@@ -223,10 +223,10 @@ function _createMails() {
         subject: "1 new job for 'web developer",
         body: "you had one job.",
         isRead: false,
-        isStared: false,
+        isStared: true,
         isSent: false,
-        labels: ["Spam"],
-        sentAt: 1661299901939,
+        labels: [],
+        sentAt: 1661199901939,
         isTrashed: false
     },
     {
@@ -239,8 +239,8 @@ function _createMails() {
         isRead: false,
         isStared: false,
         isSent: false,
-        labels: ["Spam"],
-        sentAt: 1661299901939,
+        labels: [],
+        sentAt: 1661099901939,
         isTrashed: false
     },
     {
@@ -248,13 +248,13 @@ function _createMails() {
         from: "google@appsus.com",
         to: "me@appsus.com",
         fullName: "Google",
-        subject: "Some google stuff",
-        body: "you have security alert ",
-        isRead: false,
+        subject: "התראת אבטחה",
+        body: "כניסה חדשה באחד החשבונות המקושרים שלך, בדוק האם זה אתה",
+        isRead: true,
         isStared: false,
         isSent: false,
-        labels: ["Spam"],
-        sentAt: 1661299901939,
+        labels: [],
+        sentAt: 1660501899939,
         isTrashed: false
     },
     {
@@ -267,8 +267,8 @@ function _createMails() {
         isRead: false,
         isStared: false,
         isSent: false,
-        labels: ["Spam"],
-        sentAt: 1661299901939,
+        labels: [],
+        sentAt: 1660299901939,
         isTrashed: false
     },
     {
@@ -278,12 +278,154 @@ function _createMails() {
         fullName: "Reddit",
         subject: "Webb Telescope Shatters Distance Records, Challenges Big Bang Theory",
         body: "Space is Amazing!!",
+        isRead: true,
+        isStared: false,
+        isSent: false,
+        labels: [],
+        sentAt: 1660699901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "LinkedIn@appsus.com",
+        to: "me@appsus.com",
+        fullName: "LinkedIn",
+        subject: "New jobs similar to Junior Full Stack Developer at Playtika",
+        body: "Check out jobs like Junior Full Stack Developer at our website",
+        isRead: true,
+        isStared: false,
+        isSent: false,
+        labels: [],
+        sentAt: 1660799901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "Slack@appsus.com",
+        to: "me@appsus.com",
+        fullName: "Slack",
+        subject: "Your notifications are now mobile",
+        body: "You’ve enabled push notifications on your mobile device for the User workspace, so we’ve disabled email notifications for you. That way you won’t get notified twice. It’s easy to re-enable email notifications, if you’d prefer.",
         isRead: false,
         isStared: false,
         isSent: false,
-        labels: ["Spam"],
-        sentAt: 1661299901939,
+        labels: [],
+        sentAt: 1660099901939,
         isTrashed: false
     },
+    {
+        id: utilService.makeId(),
+        from: "Ryanair@appsus.com",
+        to: "me@appsus.com",
+        fullName: "Ryanair",
+        subject: "LH4PJK | Pre-order breakfast for your flight to Bari",
+        body: "Pre-order your breakfast before you fly!",
+        isRead: true,
+        isStared: false,
+        isSent: false,
+        labels: [],
+        sentAt: 1659000901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "Apple@appsus.com",
+        to: "me@appsus.com",
+        fullName: "Apple",
+        subject: "הקבלה שלך מ-אפל",
+        body: " קיבלת קבלה חדשה מ-אפל מוסיקה ראה עוד בקישור הזה: קישור.",
+        isRead: false,
+        isStared: true,
+        isSent: false,
+        labels: [],
+        sentAt: 1660099901800,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "galkaldess@appsus.com",
+        to: "me@appsus.com",
+        fullName: "Gal Kaldess",
+        subject: "Check this out!",
+        body: "You should check out this new video I've created yesterday! I'm pretty sure you gonna like it: https://www.youtube.com/watch?v=o-YBDTqX_ZU",
+        isRead: true,
+        isStared: true,
+        isSent: false,
+        labels: [],
+        sentAt: 1656000901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "me@appsus.com",
+        to: "royyam@appsus.com",
+        fullName: "Barak",
+        subject: "Important App Updates",
+        body: "I have finished my js functionallity and also checked your App and its amazing!!!",
+        isRead: true,
+        isStared: false,
+        isSent: true,
+        labels: [],
+        sentAt: 1631299901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "me@appsus.com",
+        to: "jobs@jobs.jobs",
+        fullName: "Barak",
+        subject: "קורות חיים",
+        body: "היי , מצרף קורות חיים מעודכנים , המשך יום מקסים",
+        isRead: false,
+        isStared: false,
+        isSent: true,
+        labels: [],
+        sentAt: 1621299901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "me@appsus.com",
+        to: "me@appsus.com",
+        fullName: "Barak",
+        subject: "Future me",
+        body: "This is a Future message to me when I'm getting better at proggramming and prove it :*)",
+        isRead: false,
+        isStared: false,
+        isSent: true,
+        labels: [],
+        sentAt: 1635599901939,
+        isTrashed: false
+    },
+    {
+        id: utilService.makeId(),
+        from: "spamforlife@appsus.com",
+        to: "me@appsus.com",
+        fullName: "ספאם",
+        subject: "ספאם",
+        body: "החלטנו לשלוח לך הודעה שאין בה שום תוכן מעבר לספאם, תהנה",
+        isRead: true,
+        isStared: false,
+        isSent: false,
+        labels: [],
+        sentAt: 1611299901939,
+        isTrashed: true
+    },
+    {
+        id: utilService.makeId(),
+        from: "harambe@appsus.com",
+        to: "me@appsus.com",
+        fullName: "Harambe",
+        subject: "Harambe RIP",
+        body: "This mail is a piece of memory to remember Harambe the monke",
+        isRead: false,
+        isStared: false,
+        isSent: false,
+        labels: [],
+        sentAt: 1601200901939,
+        isTrashed: true
+    },
+
+
     ]
 }

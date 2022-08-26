@@ -65,7 +65,7 @@ function getMonthName(date) {
 
 function getFullDate(milsec) {
     let day = new Date(milsec).getDate()
-    let month = new Date(milsec).getMonth()
+    let month = new Date(milsec).getMonth() + 1
     const year = new Date(milsec).getFullYear()
     if (day < 10) { day = "0" + day }
     if (month < 10) { month = "0" + month }
