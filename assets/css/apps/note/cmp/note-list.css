@@ -7,6 +7,6 @@
   padding-bottom: 30px;
   color: rgb(100, 100, 100);
 
-  animation: pulse;
+  animation: fadeIn;
   animation-duration: 1s;
 }
