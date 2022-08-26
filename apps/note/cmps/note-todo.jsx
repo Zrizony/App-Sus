@@ -48,7 +48,7 @@ export class NoteTodo extends React.Component {
                 onClick={() => this.onToggleCheck(idx, note.id)}
               ></button>
               <p className={`${todo.isChecked ? 'todo-checked' : ''}`}>
-                {todo.text}
+                {todo.item}
               </p>
             </li>
           ))}

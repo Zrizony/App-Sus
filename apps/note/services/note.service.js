@@ -17,6 +17,7 @@ export const noteService = {
 
 function query(filterBy) {
   let notes = _loadFromStorage() || _createNotes()
+
   notes = _sortByPinned(notes)
   notes = notes.map((note) => {
     if (note.type !== 'note-todo') return note
@@ -26,23 +27,32 @@ function query(filterBy) {
       return note
     }
   })
+
+  console.log('service filterBy', filterBy);
   if (filterBy) {
     let { searchInput } = filterBy
-    searchInput = searchInput.toLowerCase()
+    
+    notes = notes.filter((note) => {
 
-    let filteredNotes = notes.filter((note) => {
-      if (note.type === 'note-todo')
-        return (
-          note.info.title.toLowerCase().includes(searchInput) ||
-          _filterTodo(note.info.todo, searchInput)
-        )
-      else {
-        return note.info.title
-          ? note.info.title.toLowerCase().includes(searchInput)
-          : '' || note.info.txt
-          ? note.info.txt.toLowerCase().includes(searchInput)
-          : ''
-      }
+      console.log('searchInput' ,searchInput);
+      console.log('note.info', note.info);
+      return (
+        note.info.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+        note.info.txt.toLowerCase().includes(searchInput.toLowerCase()) ||
+        _filterTodo(note.info.todo, searchInput)
+      )
+      // if (note.type === 'note-todo')
+      //   return (
+      //     note.info.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+      //     _filterTodo(note.info.todo, searchInput)
+      //   )
+      // else {
+      //   return note.info.title
+      //     ? note.info.title.toLowerCase().includes(searchInput.toLowerCase())
+      //     : '' || note.info.txt
+      //     ? note.info.txt.toLowerCase().includes(searchInput.toLowerCase())
+      //     : ''
+      // }
     })
     return Promise.resolve(filteredNotes)
   }
@@ -58,11 +68,11 @@ function getNoteById(id) {
 function _createNotes() {
   const notes = [
     {
-      id: 'pFBwMV',
+      id: 'd68f4c',
       type: 'note-img',
       isPinned: false,
       info: {
-        title: 'Don\'t forget to breath',
+        title: "Don't forget to breath",
         txt: '',
         url: '../../../assets/img/breath.jpg',
         todo: [],
@@ -72,32 +82,32 @@ function _createNotes() {
       },
     },
     {
-      id: 'u1rwav',
+      id: '7E6d49',
       type: 'note-todo',
       isPinned: false,
       info: {
         title: 'Groceries',
-        text: '',
+        item: '',
         url: '',
         todo: [
           {
-            text: 'Water',
+            item: 'Water',
             isChecked: false,
           },
           {
-            text: 'Milk',
+            item: 'Milk',
             isChecked: true,
           },
           {
-            text: 'Bread',
+            item: 'Bread',
             isChecked: false,
           },
           {
-            text: 'Rice',
+            item: 'Rice',
             isChecked: true,
           },
           {
-            text: 'Toiler Paper',
+            item: 'Toiler Paper',
             isChecked: false,
           },
         ],
@@ -107,28 +117,28 @@ function _createNotes() {
       },
     },
     {
-      id: 'svPO8T',
+      id: '07c3B8',
       type: 'note-todo',
       isPinned: true,
       info: {
         title: 'Todo list for tomorrow',
-        text: '',
+        item: '',
         url: '',
         todo: [
           {
-            text: 'Eat',
+            item: 'Eat',
             isChecked: true,
           },
           {
-            text: 'Sleep',
+            item: 'Sleep',
             isChecked: true,
           },
           {
-            text: 'Code',
+            item: 'Code',
             isChecked: false,
           },
           {
-            text: 'Repeat',
+            item: 'Repeat',
             isChecked: false,
           },
         ],
@@ -138,7 +148,7 @@ function _createNotes() {
       },
     },
     {
-      id: 'TUfens',
+      id: 'f780dc',
       type: 'note-txt',
       isPinned: true,
       info: {
@@ -153,7 +163,7 @@ function _createNotes() {
       },
     },
     {
-      id: 'WzQ9KF',
+      id: '99D62F',
       type: 'note-img',
       isPinned: false,
       info: {
@@ -165,11 +175,12 @@ function _createNotes() {
       },
     },
     {
-      id: 'JIUJb7',
+      id: '82B794',
       type: 'note-video',
       isPinned: false,
       info: {
         videoId: '0Xtbnfcxxco',
+        videoUrl: 'https://www.youtube.com/watch?v=0Xtbnfcxxco',
         title: 'Childhood',
       },
       style: {
@@ -191,24 +202,26 @@ function addNote(note) {
       if (!noteInfo.url) return
       break
     case 'note-video':
-      if (!noteInfo.videoId) return
+      if (!noteInfo.url) return
       break
     case 'note-todo':
       if (!noteInfo.todo.length) return
-      noteInfo.todo = noteInfo.todo.filter((task) => task.length >= 1)
-                      .map((task) => ({ text: task }))
-      console.log('noteInfo.todo', noteInfo.todo)
+      noteInfo.todo = noteInfo.todo
+        .filter((task) => task.length >= 1)
+        .map((task) => ({ item: task }))
       break
   }
+
   const newNote = {
     id: utilService.makeId(),
     type: noteType,
     isPinned: false,
     info: { ...noteInfo },
     style: {
-      backgroundColor: '#fff',
+      backgroundColor: '#FFF475',
     },
   }
+
   const notes = _loadFromStorage()
   notes.unshift(newNote)
   _saveToStorage(notes)
@@ -245,7 +258,6 @@ function duplicateNote(noteId) {
     return noteId === note.id
   })
   const duplicateNote = { ...note }
-  console.log('duplicateNote:', duplicateNote);
 
   duplicateNote.id = utilService.makeId()
   duplicateNote.isPinned = false
@@ -310,7 +322,10 @@ function _sortByChecked(todo) {
 }
 
 function _filterTodo(todo, filterBy) {
-  return todo.some((task) => task.txt.toLowerCase().includes(filterBy))
+  console.log('this', todo, filterBy);
+  let filteredToDos = todo.filter((task) => task.txt.toLowerCase().includes(filterBy.toLowerCase()))
+  console.log('filteredToDos', filteredToDos);
+  return
 }
 
 function _loadFromStorage() {

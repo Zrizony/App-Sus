@@ -3,7 +3,6 @@ import { NoteTypeBtns } from './note-type-btns.jsx'
 // import { CreateTodo } from './create-todo-note.jsx'
 
 export class NoteAdd extends React.Component {
-
   state = {
     isActive: false,
     noteType: 'note-txt',
@@ -34,8 +33,11 @@ export class NoteAdd extends React.Component {
       !note.noteInfo.txt.length &&
       !note.noteInfo.url.length &&
       !note.noteInfo.todo.length
-    ) return
+    )
+      return
+      console.log('noteService.addNote(note)1', noteService.addNote(note))
     noteService.addNote(note)
+      console.log('noteService.addNote(note)2', noteService.addNote(note))
       .then(
         this.setState({
           isActive: false,
@@ -54,17 +56,15 @@ export class NoteAdd extends React.Component {
 
   onExpandInput = (ev, isOpen) => {
     if (ev.relatedTarget) return
-
     this.setState({ isActive: isOpen })
   }
 
   onChangeType = (ev) => {
     ev.preventDefault()
+
     this.onExpandInput(ev, true)
     const value = ev.target.value
-
     this.setState((prevState) => ({ ...prevState, noteType: value }))
-    console.log('onChangeType', this.inputRef.current);
     this.inputRef.current.focus()
   }
 
@@ -80,7 +80,7 @@ export class NoteAdd extends React.Component {
     todo[idx] = ev.target.value
     todo = this.clearTodoLine()
     this.handleChange({ target: { value: todo, name: 'todo' } })
-    console.log('todo', todo);
+    console.log('todo', todo)
     todo.push('')
     this.setState({ todo })
   }
@@ -95,7 +95,8 @@ export class NoteAdd extends React.Component {
           onSubmit={this.onAddNote}
           onBlur={(ev) => {
             this.onExpandInput(ev, true)
-          }}>
+          }}
+        >
           <input
             className={`note-add-title ${isActive ? '' : 'hide'}`}
             type="text"
@@ -130,28 +131,27 @@ export class NoteAdd extends React.Component {
               ref={this.inputRef}
             />
           )}
-          {noteType === 'note-todo' && (
+          {noteType === 'note-todo' &&
             // <CreateTodo handleChange={this.handleChange} />
             todo.map((task, idx) => (
               <input
-              key={idx}
-              name="todo"
-              autoComplete="off"
-              type="text"
-              placeholder="List item"
-              value={task}
-              className="todo-line"
-              onFocus={(ev) => this.onExpandInput(ev, true)}
-              onChange={(ev) => this.handleChangeTodo(ev, idx)}
-              ref={this.inputRef}
+                key={idx}
+                name="todo"
+                autoComplete="off"
+                type="text"
+                placeholder="List item"
+                value={task}
+                className="todo-line"
+                onFocus={(ev) => this.onExpandInput(ev, true)}
+                onChange={(ev) => this.handleChangeTodo(ev, idx)}
+                ref={this.inputRef}
               />
-            ))
-          )}
+            ))}
           {noteType === 'note-video' && (
             <input
-              name="txt"
+              name="url"
               autoComplete="off"
-              type="text"
+              type="url"
               placeholder="Enter Video embed URL"
               value={url}
               onFocus={(ev) => this.onExpandInput(ev, true)}

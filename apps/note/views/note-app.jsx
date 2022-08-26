@@ -7,34 +7,20 @@ import { NoteFilter } from '../cmps/note-filter.jsx'
 export class NoteApp extends React.Component {
   state = {
     filterBy: '',
-    notes: [],
+    notes: null,
     selectedNote: null,
   }
 
   componentDidMount() {
-    let searchQuery = new URLSearchParams(this.props.location.search).get(
-      'search'
-    )
-    if (!searchQuery) this.loadNotes()
-    this.setState(
-      (prevState) => ({ ...prevState, filterBy: searchQuery }),
-      this.loadNotes
-      )
-    }
-    
-    componentDidUpdate(prevProps, prevState) {
-    let searchQuery = new URLSearchParams(this.props.location.search).get(
-      'search'
-    )
-    let prevSearch = new URLSearchParams(prevProps.location.search).get(
-      'search'
-    )
-    if (prevSearch !== searchQuery) {
-      this.setState(
-        (prevState) => ({ ...prevState, filterBy: searchQuery }),
-        this.loadNotes
-      )
-    }
+    console.log('didMount')
+    this.loadNotes()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('didUpdate')
+    // if (prevSearch) {
+    //   this.setState((prevState) => ({ ...prevState, filterBy }), this.loadNotes)
+    // }
   }
 
   onPinNote = (ev, noteId) => {
@@ -51,7 +37,7 @@ export class NoteApp extends React.Component {
   }
 
   onDuplicateNote = (noteId) => {
-    console.log('noteId:', noteId);
+    console.log('noteId:', noteId)
     noteService
       .duplicateNote(noteId)
       .then((notes) => this.setState((prevState) => ({ ...prevState, notes })))
@@ -65,13 +51,18 @@ export class NoteApp extends React.Component {
 
   loadNotes = () => {
     const { filterBy } = this.state
+    console.log('load filterBy', filterBy)
+
     noteService.query(filterBy).then((notes) => {
-      this.setState((prevState) => ({ ...prevState, notes }))
+      this.setState({ notes }), () => {
+          console.log('this.state', this.state)
+        }
     })
   }
 
   render() {
     const { notes } = this.state
+    if (!notes) return <div>loading...</div>
     return (
       <React.Fragment>
         <section className="note-app">
