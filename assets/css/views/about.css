@@ -1,5 +1,7 @@
 .about {
   margin-top: 1rem;
+  animation: fadeIn;
+  animation-duration: 1s;
 }
 
 .about-us {
@@ -11,10 +13,9 @@
 .newsletter {
   display: grid;
   justify-items: center;
-
 }
 
 .newsletter-form input {
-    display: block;
-    margin: 1em;
+  display: block;
+  margin: 1em;
 }
