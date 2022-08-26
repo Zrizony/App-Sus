@@ -53,7 +53,10 @@ export class NotePreview extends React.Component {
       }
     }
 
-    const inlineStyle = note.style.backgroundColor !== '#fff' && noteType !== 'note-img' && note.style.backgroundColor !== '#FFFFFF'
+    const inlineStyle =
+      note.style.backgroundColor !== '#fff' &&
+      noteType !== 'note-img' &&
+      note.style.backgroundColor !== '#FFFFFF'
         ? { backgroundColor: note.style.backgroundColor }
         : {
             backgroundColor: note.style.backgroundColor,
@@ -66,7 +69,7 @@ export class NotePreview extends React.Component {
           <DynamicCmp
             note={note}
             onChangeNoteColor={this.onChangeNoteColor}
-            onDuplicateNote={this.onDuplicateNote}
+            onDuplicateNote={this.props.onDuplicateNote}
             onDeleteNote={this.props.onDeleteNote}
             onPin={this.onPin}
             isPinned={this.state.isPinned}

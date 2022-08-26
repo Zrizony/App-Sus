@@ -13,14 +13,13 @@ export class NoteApp extends React.Component {
 
   componentDidMount() {
     console.log('didMount')
-
     if (!this.state.notes) return this.loadNotes()
   }
 
   componentDidUpdate(prevProps, filterBy) {
     console.log('didUpdate')
 
-    if (prevProps) {
+    if (prevProps || this.props.onAddNote) {
       this.loadNotes
     }
   }
@@ -39,7 +38,6 @@ export class NoteApp extends React.Component {
   }
 
   onDuplicateNote = (noteId) => {
-    console.log('noteId:', noteId)
     noteService
       .duplicateNote(noteId)
       .then((notes) => this.setState((prevState) => ({ ...prevState, notes })))
@@ -55,11 +53,12 @@ export class NoteApp extends React.Component {
     const { filterBy } = this.state
     console.log('load filterBy', filterBy)
 
-    noteService.query(filterBy).then((notes) => {
-      this.setState({ notes }),
-        () => {
-          console.log('this.state', this.state)
-        }
+    noteService.query(filterBy)
+      .then((notes) => {
+      this.setState({ notes })
+      // ,
+      //   () => {
+      //   }
     })
   }
 
@@ -68,16 +67,16 @@ export class NoteApp extends React.Component {
     if (!notes) return <div>loading...</div>
     return (
       <React.Fragment>
-        <section className="note-app">
-          <NoteFilter onSetFilter={this.onSetFilter} />
-          <NoteAdd loadNotes={this.loadNotes} />
-          <NoteList
-            notes={notes}
-            onDeleteNote={this.onDeleteNote}
-            onDuplicateNote={this.onDuplicateNote}
-            onPinNote={this.onPinNote}
-          />
-        </section>
+            <section className="note-app">
+              <NoteFilter onSetFilter={this.onSetFilter} />
+              <NoteAdd loadNotes={this.loadNotes} />
+              <NoteList
+                notes={notes}
+                onDeleteNote={this.onDeleteNote}
+                onDuplicateNote={this.onDuplicateNote}
+                onPinNote={this.onPinNote}
+              />
+            </section>
       </React.Fragment>
     )
   }

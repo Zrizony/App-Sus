@@ -1,8 +1,6 @@
 import { storageService } from '../../../services/storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 
-const KEY = 'notesDB'
-
 export const noteService = {
   query,
   getNoteById,
@@ -14,6 +12,8 @@ export const noteService = {
   toggleTodoCheck,
   togglePin,
 }
+
+const KEY = 'notesDB'
 
 function query(filterBy) {
   let notes = _loadFromStorage() || _createNotes()
@@ -28,17 +28,19 @@ function query(filterBy) {
     }
   })
 
-  console.log('service filterBy', filterBy);
-  if (filterBy) {
+  if (filterBy !== '') {
     let { searchInput } = filterBy
-    
-    notes = notes.filter((note) => {
+    console.log('searchInput1', searchInput)
 
-      console.log('searchInput' ,searchInput);
-      console.log('note.info', note.info);
+    const filteredNotes = notes.filter((note) => {
+
+      console.log('searchInput2' ,searchInput)
+      console.log('note.info', note.info)
+
       return (
-        note.info.title.toLowerCase().includes(searchInput.toLowerCase()) ||
-        note.info.txt.toLowerCase().includes(searchInput.toLowerCase()) 
+        note.info.title.toLowerCase().includes(searchInput.toLowerCase())
+        // ||
+        // note.info.txt.toLowerCase().includes(searchInput.toLowerCase()) 
         // _filterTodo(note.info.todo, searchInput)
       )
       // if (note.type === 'note-todo')
@@ -69,6 +71,7 @@ function _createNotes() {
   const notes = [
     {
       id: 'd68f4c',
+
       type: 'note-img',
       isPinned: false,
       info: {
@@ -83,6 +86,7 @@ function _createNotes() {
     },
     {
       id: '7E6d49',
+
       type: 'note-todo',
       isPinned: false,
       info: {
@@ -118,6 +122,7 @@ function _createNotes() {
     },
     {
       id: '07c3B8',
+
       type: 'note-todo',
       isPinned: true,
       info: {
@@ -149,6 +154,7 @@ function _createNotes() {
     },
     {
       id: 'f780dc',
+ 
       type: 'note-txt',
       isPinned: true,
       info: {
@@ -164,11 +170,14 @@ function _createNotes() {
     },
     {
       id: '99D62F',
+
       type: 'note-img',
       isPinned: false,
       info: {
-        url: 'https://m.media-amazon.com/images/M/MV5BZjRhMTBlYmEtZGI1Zi00OTRjLWEwOGEtOTY0YjIzYjljYjY4XkEyXkFqcGdeQXVyNTMyODM3MTg@._V1_FMjpg_UX1000_.jpg',
         title: 'True work of art',
+        text: '',
+        url: 'https://m.media-amazon.com/images/M/MV5BZjRhMTBlYmEtZGI1Zi00OTRjLWEwOGEtOTY0YjIzYjljYjY4XkEyXkFqcGdeQXVyNTMyODM3MTg@._V1_FMjpg_UX1000_.jpg',
+        todo: []
       },
       style: {
         backgroundColor: '#FFF475',
@@ -176,12 +185,16 @@ function _createNotes() {
     },
     {
       id: '82B794',
+
       type: 'note-video',
       isPinned: false,
       info: {
+        title: 'Childhood',
+        text: '',
+        url: 'https://www.youtube.com/watch?v=0Xtbnfcxxco',
+        todo: [],
         videoId: '0Xtbnfcxxco',
         videoUrl: 'https://www.youtube.com/watch?v=0Xtbnfcxxco',
-        title: 'Childhood',
       },
       style: {
         backgroundColor: '#FDCFE8',
@@ -262,6 +275,7 @@ function duplicateNote(noteId) {
   duplicateNote.id = utilService.makeId()
   duplicateNote.isPinned = false
   notes.unshift(duplicateNote)
+
   if (duplicateNote.info.todo.length) {
     _sortByChecked(duplicateNote.info.todo)
   }

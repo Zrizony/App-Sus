@@ -1,10 +1,10 @@
 import { noteService } from '../services/note.service.js'
 import { NoteTypeBtns } from './note-type-btns.jsx'
 import { NoteVideo } from './note-video.jsx'
-// import { CreateTodo } from './create-todo-note.jsx'
 
 export class NoteAdd extends React.Component {
   state = {
+    key: '',
     isActive: false,
     noteType: 'note-txt',
     noteInfo: {
@@ -36,10 +36,10 @@ export class NoteAdd extends React.Component {
       !note.noteInfo.todo.length
     )
       return
-      console.log('noteService.addNote(note)1', noteService.addNote(note))
     noteService.addNote(note)
       .then(
         this.setState({
+          key: '',
           isActive: false,
           noteType: 'note-txt',
           noteInfo: {
@@ -88,7 +88,7 @@ export class NoteAdd extends React.Component {
   //---- render ----//
   render() {
     const { txt, title, url, todo } = this.state.noteInfo
-    const { isActive, noteType } = this.state
+    const { isActive, noteType, key } = this.state
     return (
       <div className="note-add">
         <form
@@ -109,6 +109,7 @@ export class NoteAdd extends React.Component {
 
           {noteType === 'note-txt' && (
             <input
+              key={key}
               name="txt"
               autoComplete="off"
               type="text"
@@ -121,6 +122,7 @@ export class NoteAdd extends React.Component {
           )}
           {noteType === 'note-img' && (
             <input
+            key={key}
               name="url"
               autoComplete="off"
               type="text"
@@ -132,7 +134,6 @@ export class NoteAdd extends React.Component {
             />
           )}
           {noteType === 'note-todo' &&
-            // <CreateTodo handleChange={this.handleChange} />
             todo.map((task, idx) => (
               <input
                 key={idx}
@@ -151,7 +152,7 @@ export class NoteAdd extends React.Component {
             <input
               name="url"
               autoComplete="off"
-              type="url"
+              type="text"
               placeholder="Enter Video URL"
               value={url}
               onFocus={(ev) => this.onExpandInput(ev, true)}
