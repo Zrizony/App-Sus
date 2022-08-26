@@ -32,19 +32,20 @@ export class MailCompose extends React.Component {
                 <label className="to">To</label>
                 <input
                     className="toInput"
-                    type="text"
+                    type="email"
                     name="to"
                     value={to}
                     onChange={this.handleChange}
+                    required
                 />
                 <input
                     className="subject"
                     placeholder="Subject"
-
                     type="text"
                     name="subject"
                     value={subject}
                     onChange={this.handleChange}
+                    required
                 />
                 <textarea
                     className="bodyText"
@@ -52,6 +53,7 @@ export class MailCompose extends React.Component {
                     name="bodyText"
                     value={bodyText}
                     onChange={this.handleChange}
+                    required
                 />
                 <button>Send</button>
 

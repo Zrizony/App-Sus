@@ -7,7 +7,9 @@ export const mailService = {
     trashMail,
     envelopClick,
     unreadMails,
-    addSentMail
+    addSentMail,
+    getUnReadLength,
+    setReadOpenedMail
 }
 
 const STORAGE_KEY = 'mailDB'
@@ -24,14 +26,18 @@ function query(filterBy) {
 
     if (filterBy) {
         const { searchInput } = filterBy
-        if (searchInput.length > 2) {
 
-            gMails = gMails.filter((mail) => {
-                return (mail.subject.toLowerCase().includes(searchInput.toLowerCase()) ||
-                    mail.body.toLowerCase().includes(searchInput.toLowerCase()))
 
-            })
-        }
+        gMails = gMails.filter((mail) => {
+            return (
+                mail.subject.toLowerCase().includes(searchInput.toLowerCase()) ||
+                mail.body.toLowerCase().includes(searchInput.toLowerCase()) ||
+                mail.from.toLowerCase().includes(searchInput.toLowerCase()) ||
+                mail.fullName.toLowerCase().includes(searchInput.toLowerCase())
+            )
+
+        })
+
 
     }
 
@@ -54,6 +60,22 @@ function envelopClick(mailId) {
 
     const mailIdx = gMails.findIndex((mail) => { return mailId === mail.id })
     gMails[mailIdx].isRead = !gMails[mailIdx].isRead
+    storageService.saveToStorage(STORAGE_KEY, gMails)
+
+    return Promise.resolve()
+}
+
+function getUnReadLength() {
+    let gMails = storageService.loadFromStorage(STORAGE_KEY)
+
+    return Promise.resolve(gMails.length)
+}
+
+function setReadOpenedMail(mailId) {
+    let gMails = storageService.loadFromStorage(STORAGE_KEY)
+
+    const mailIdx = gMails.findIndex((mail) => { return mailId === mail.id })
+    gMails[mailIdx].isRead = true
     storageService.saveToStorage(STORAGE_KEY, gMails)
 
     return Promise.resolve()
@@ -83,7 +105,7 @@ function unreadMails() {
         return !mail.isRead
     })
     console.log("length: ", gMails.length);
-    return gMails.length
+    return Promise.resolve(gMails.length)
 }
 
 function addSentMail(to, subject, bodyText) {

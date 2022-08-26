@@ -13,7 +13,7 @@ export function MailSideBar({ onCompose }) {
             <div className="sidebar-inbox">
                 <i className="fa-solid fa-inbox"></i>
                 <span>Inbox</span>
-                <span>5</span>
+                <span></span>
             </div>
         </NavLink>
         <NavLink to='/mail/starred'>

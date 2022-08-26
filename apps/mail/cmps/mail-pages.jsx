@@ -1,13 +1,19 @@
-export class MailPages extends React.Component {
+export function MailPages({ currPageIdx, onNextPage, onPreviewsPage, pageSize, inboxLength }) {
 
 
-
-
-    render() {
-        return <section className="mail-pages">
-            <button>←</button>
-            <button>→</button>
-
-        </section>
+    function previousDisabled() {
+        if (currPageIdx <= 0) return false
     }
+
+
+    return <section className="mail-pages">
+        {(currPageIdx <= 0) ?
+            <button onClick={onPreviewsPage} disabled>{'<'}</button> :
+            <button onClick={onPreviewsPage} >{'<'}</button>}
+        {((currPageIdx + 1) * pageSize >= inboxLength) ?
+            <button onClick={onNextPage} disabled>{'>'}</button> :
+            <button onClick={onNextPage}>{'>'}</button>}
+        <span >{currPageIdx}</span>
+    </section>
+
 }

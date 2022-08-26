@@ -8,14 +8,18 @@ import { MailPages } from '../cmps/mail-pages.jsx'
 
 
 export class MailApp extends React.Component {
-
+    // state
     state = {
         inbox: null,
+        inboxToDisplay: null,
         filterBy: null,
         isComposing: null,
         mailShown: null,
-        currPage: 0
+        currPage: 0,
+        unReadMails: null
     }
+    // unchangble
+    PAGE_SIZE = 5
 
     componentDidMount() {
         console.log(this.props.match);
@@ -23,34 +27,40 @@ export class MailApp extends React.Component {
         this.loadInbox()
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         console.log("Component Did Update!");
         if (prevProps.match.params.folder !== this.props.match.params.folder) {
-            console.log(prevProps.match.params.folder);
-            console.log(this.props.match.params.folder);
-            this.loadInbox()
 
+            this.loadInbox()
+            return
         }
+
+        // console.log(prevState.inboxToDisplay);
+        // console.log(this.state.inboxToDisplay);
+        // if (prevState.inboxToDisplay !== this.state.inboxToDisplay) {
+        //     console.log("this");
+        //     this.setCurrPages()
+        //     return
+        // }
     }
 
-    PAGE_SIZE = 5
-
+    // load content
     loadInbox = () => {
-        // return null
         const { filterBy } = this.state
         mailService.query(filterBy)
+            //  // get mail inbox from service
             .then((res) => {
                 return this.sortMailsForDisplay(res)
             })
             .then((res) => {
                 if (res === []) return res
-                const startIdx = this.state.currPage * this.PAGE_SIZE
-                res = res.slice(startIdx, startIdx + this.PAGE_SIZE)
-                console.log(res);
+
                 return res
             })
             .then((res) => {
-                this.setState({ inbox: res }, () => {
+                this.setState({ inbox: res, }, () => {
+                    this.setCurrPages()
+
                     console.log(this.state);
                 })
             })
@@ -61,31 +71,59 @@ export class MailApp extends React.Component {
         console.log(folder);
 
         if (folder.toLowerCase() === "inbox") {
-            this.setState({ mailShown: null })
+            this.setState({ mailShown: null, currPage: 0 })
             return mails.filter((mail) => {
                 return (!mail.isTrashed && !mail.isSent)
             })
         } else if (folder.toLowerCase() === "starred") {
-            this.setState({ mailShown: null })
+            this.setState({ mailShown: null, currPage: 0 })
             return mails.filter((mail) => {
                 return (mail.isStared && !mail.isTrashed)
             })
         } else if (folder.toLowerCase() === "sent") {
-            this.setState({ mailShown: null })
+            this.setState({ mailShown: null, currPage: 0 })
             return mails.filter((mail) => {
                 return (mail.isSent && !mail.isTrashed)
             })
         } else if (folder.toLowerCase() === "trash") {
-            this.setState({ mailShown: null })
+            this.setState({ mailShown: null, currPage: 0 })
             return mails.filter((mail) => {
                 return (mail.isTrashed)
             })
         } else if (folder === this.state.mailShown.id) {
-
             return []
-
         }
     }
+
+    onSetFilter = (filterBy) => {
+        this.setState({ filterBy }, () => {
+            this.loadInbox()
+        })
+    }
+
+    setCurrPages = () => {
+
+        const startIdx = this.state.currPage * this.PAGE_SIZE
+        let res = this.state.inbox
+        res = res.slice(startIdx, startIdx + this.PAGE_SIZE)
+        this.setState({ inboxToDisplay: res })
+    }
+
+    onNextPage = () => {
+        console.log(this.state.currPage);
+        this.setState({ currPage: this.state.currPage += 1 }, () => {
+            console.log(this.state.currPage);
+            this.setCurrPages()
+        })
+    }
+
+    onPreviewsPage = () => {
+        this.setState({ currPage: this.state.currPage -= 1 }, () => {
+            console.log(this.state.currPage);
+            this.setCurrPages()
+        })
+    }
+
 
     onTrashMail = (ev, mailId) => {
         ev.stopPropagation()
@@ -104,11 +142,6 @@ export class MailApp extends React.Component {
             })
     }
 
-    onSetFilter = (filterBy) => {
-        this.setState({ filterBy }, () => {
-            this.loadInbox()
-        })
-    }
 
     onCompose = () => {
         console.log("trying to compose");
@@ -127,34 +160,48 @@ export class MailApp extends React.Component {
         console.log(newMail);
     }
 
-    // onUnreadMails = () => {
-    //     const length = mailService.unreadMails()
-    //     console.log(length);
-    //     return length
-    // }
-
-    onReturn = () => {
-        this.props.history.push('/mail/inbox')
-    }
-
     onCloseCompose = () => {
         console.log("tring to close compose");
         this.setState({ isComposing: !this.state.isComposing })
     }
 
-    onOpenMail = (mail) => {
-        this.setState({ mailShown: mail }, () => {
-            this.props.history.push('/mail/' + mail.id)
+    setUnreadLength = () => {
 
-        })
-        console.log("mail shown: ", mail);
+        mailService.unreadMails()
+            .then((res) => {
+                console.log("res", res);
+                this.setState({ unReadLength: res }, () => {
+                    console.log("res", res);
+                })
+
+            })
+
 
     }
 
-    render() {
-        const { inbox } = this.state
+    onOpenMail = (mail) => {
+        mailService.setReadOpenedMail(mail.id)
+            .then(() => {
+                this.setState({ mailShown: mail }, () => {
+                    // this.loadInbox()
+                    this.props.history.push('/mail/' + mail.id)
 
-        if (!inbox) { return <div>Loading...</div> }
+                })
+            })
+
+    }
+
+    onReturn = () => {
+
+        this.props.history.push('/mail/inbox')
+    }
+
+
+
+    render() {
+        const { inbox, inboxToDisplay } = this.state
+
+        if (!inboxToDisplay) { return <div>Loading...</div> }
         return <section className="full mail-app">
 
             <MailFilter onSetFilter={this.onSetFilter} />
@@ -174,10 +221,16 @@ export class MailApp extends React.Component {
                 />
                 :
                 <React.Fragment>
-                    <MailPages />
+                    <MailPages
+                        currPageIdx={this.state.currPage}
+                        onNextPage={this.onNextPage}
+                        onPreviewsPage={this.onPreviewsPage}
+                        pageSize={this.PAGE_SIZE}
+                        inboxLength={inbox.length}
+                    />
 
                     <MailList
-                        inbox={inbox}
+                        inbox={inboxToDisplay}
                         onTrashMail={this.onTrashMail}
                         onOpenMail={this.onOpenMail}
                     />
