@@ -9,6 +9,8 @@ export class NoteFilter extends React.Component {
     const field = ev.target.name
     const value = ev.target.value
 
+    console.log('value', value);
+
     this.props.onSetFilter(this.state.filterBy)
     this.setState(
       ({ filterBy }) => ({

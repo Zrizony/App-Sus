@@ -39,22 +39,7 @@ function query(filterBy) {
 
       return (
         note.info.title.toLowerCase().includes(searchInput.toLowerCase())
-        // ||
-        // note.info.txt.toLowerCase().includes(searchInput.toLowerCase()) 
-        // _filterTodo(note.info.todo, searchInput)
       )
-      // if (note.type === 'note-todo')
-      //   return (
-      //     note.info.title.toLowerCase().includes(searchInput.toLowerCase()) ||
-      //     _filterTodo(note.info.todo, searchInput)
-      //   )
-      // else {
-      //   return note.info.title
-      //     ? note.info.title.toLowerCase().includes(searchInput.toLowerCase())
-      //     : '' || note.info.txt
-      //     ? note.info.txt.toLowerCase().includes(searchInput.toLowerCase())
-      //     : ''
-      // }
     })
     return Promise.resolve(filteredNotes)
   }
