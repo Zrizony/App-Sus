@@ -27,11 +27,11 @@ export class NotePreview extends React.Component {
   onPin = (ev, noteId) => {
     ev.stopPropagation()
     ev.preventDefault()
+    
     const { onPinNote } = this.props
     onPinNote(ev, noteId)
     this.setState((prevState) => ({
-      ...prevState,
-      isPinned: !this.state.isPinned,
+      ...prevState, isPinned: !this.state.isPinned
     }))
   }
 

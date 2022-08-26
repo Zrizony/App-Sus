@@ -21,7 +21,7 @@ export class NoteTodo extends React.Component {
     const { note } = this.props
     
     return (
-      <div className="todo-container">
+      <div className="note-todo-container">
         {note.info.title && (
           <div className="todo-title">{note.info.title}</div>
         )}

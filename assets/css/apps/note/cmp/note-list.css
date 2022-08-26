@@ -1,9 +1,12 @@
 .note-list {
-    width: 95%;
-    column-width: 240px;
-    column-count: auto;
-    gap: 1px;
-    margin-top: 40px;
-    padding-bottom: 30px;
-    color: rgb(100, 100, 100);
-  }
+  width: 95%;
+  column-width: 240px;
+  column-count: auto;
+  gap: 1px;
+  margin-top: 40px;
+  padding-bottom: 30px;
+  color: rgb(100, 100, 100);
+
+  animation: fadeInUp;
+  animation-duration: 1s;
+}

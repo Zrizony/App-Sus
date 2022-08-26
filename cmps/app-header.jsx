@@ -9,9 +9,9 @@ export function AppHeader() {
             </Link>
             <nav>
                 <NavLink exact to="/">Home</NavLink>
-                <NavLink to="/about">About</NavLink>
                 <NavLink to="/mail/inbox">Mail</NavLink>
                 <NavLink to="/note">Note</NavLink>
+                <NavLink to="/about">About</NavLink>
             </nav>
         </div>
     </header>
