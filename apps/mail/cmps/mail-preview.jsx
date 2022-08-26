@@ -102,15 +102,17 @@ export class MailPreview extends React.Component {
             <span className="body">
                 {body}
             </span>
-            <span onClick={(ev) => { this.props.onTrashMail(ev, id) }} className="delete">
-                <i className="fa-regular fa-trash-can"></i>
-            </span>
-            <span onClick={(ev) => { this.onEnvelopClick(ev, id) }} className="envelop">
-                {this.isEnvelopOpen()}
-            </span>
-            <span className="date">
-                {this.renderDate()}
-            </span>
+            <div className="details">
+                <span onClick={(ev) => { this.props.onTrashMail(ev, id) }} className="delete">
+                    <i className="fa-regular fa-trash-can"></i>
+                </span>
+                <span onClick={(ev) => { this.onEnvelopClick(ev, id) }} className="envelop">
+                    {this.isEnvelopOpen()}
+                </span>
+                <span className="date">
+                    {this.renderDate()}
+                </span>
+            </div>
         </li>
     }
 }

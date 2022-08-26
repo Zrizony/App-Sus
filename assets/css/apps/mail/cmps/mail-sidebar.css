@@ -36,11 +36,17 @@
   color: #5f6368;
   background-color: #ffffff;
   font-family: product-sans-regular;
+  font-size: 0.875em;
   display: inline-block;
   border: 0;
   margin-top: 10px;
   margin-bottom: 15px;
   margin-left: -65px;
+  transition: transform 0.2s;
+}
+
+.mail-sidebar .compose:hover {
+  transform: scale(102%);
 }
 
 .mail-sidebar .compose i {

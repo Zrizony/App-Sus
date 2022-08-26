@@ -6,9 +6,10 @@
 }
 
 .mail-item {
+  position: relative;
   display: flex;
   align-items: center;
-
+  max-height: 26px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 5px;
@@ -17,7 +18,7 @@
 }
 
 .mail-item .full-name {
-  flex-basis: 15%;
+  min-width: 180px;
 }
 
 .mail-item:first-child {
@@ -26,7 +27,8 @@
 
 .mail-item:hover {
   cursor: pointer;
-  box-shadow: 0px 0px 18px -4px #fefff5;
+  box-shadow: 0px 0px 12px -3px #fefff5;
+  z-index: 10;
 }
 
 .mail-item .star {
@@ -46,10 +48,18 @@
   text-shadow: 0px 0px 20px #888484;
 }
 
-.mail-item .body {
+.mail-item .subject {
+  display: flex;
   overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mail-item .body {
+  display: flex;
+  overflow: hidden;
   color: #969696;
+  white-space: nowrap;
+  flex: 1;
 }
 
 .mail-item span {
@@ -87,5 +97,7 @@
   background-color: #161616;
 }
 
-.mail-item .date {
+.mail-item .details {
+  min-width: 170px;
+  text-align: end;
 }

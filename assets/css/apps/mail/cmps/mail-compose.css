@@ -9,6 +9,9 @@
   width: 500px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+
+  animation: fadeInUp;
+  animation-duration: 0.5s;
 }
 
 .mail-compose input {

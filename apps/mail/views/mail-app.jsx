@@ -54,11 +54,11 @@ export class MailApp extends React.Component {
             })
             .then((res) => {
                 if (res === []) return res
-
                 return res
             })
             .then((res) => {
                 this.setState({ inbox: res, }, () => {
+                    console.log("curr inbox:", this.state.inbox);
                     this.setCurrPages()
 
                     console.log(this.state);
@@ -124,7 +124,6 @@ export class MailApp extends React.Component {
         })
     }
 
-
     onTrashMail = (ev, mailId) => {
         ev.stopPropagation()
 
@@ -167,6 +166,7 @@ export class MailApp extends React.Component {
 
     setUnreadLength = () => {
 
+        return
         mailService.unreadMails()
             .then((res) => {
                 console.log("res", res);

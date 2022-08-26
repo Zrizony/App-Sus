@@ -21,6 +21,7 @@
 @import "./apps/mail/cmps/mail-sidebar.css";
 @import "./apps/mail/cmps/mail-compose.css";
 @import "./apps/mail/cmps/mail-pages.css";
+@import "./apps/mail/cmps/mail-details.css";
 
 @import "./apps/mail/views/mail-app.css";
 

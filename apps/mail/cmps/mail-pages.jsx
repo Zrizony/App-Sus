@@ -6,6 +6,8 @@ export function MailPages({ currPageIdx, onNextPage, onPreviewsPage, pageSize, i
     }
 
 
+
+
     return <section className="mail-pages">
         <div className="pages-content">
 
@@ -15,7 +17,7 @@ export function MailPages({ currPageIdx, onNextPage, onPreviewsPage, pageSize, i
             {((currPageIdx + 1) * pageSize >= inboxLength) ?
                 <button className="disabled-button" onClick={onNextPage} disabled><i className="fa-solid fa-angle-right"></i></button> :
                 <button onClick={onNextPage}><i className="fa-solid fa-angle-right"></i></button>}
-            <span className="page-idx">{currPageIdx}</span>
+            <span className="page-idx">{currPageIdx + 1} / {Math.floor(inboxLength / 10 + 1)}</span>
         </div>
     </section>
 
