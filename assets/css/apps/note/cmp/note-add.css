@@ -10,7 +10,7 @@
   z-index: 10;
 
   animation: zoomIn;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 .note-add-title.hide {

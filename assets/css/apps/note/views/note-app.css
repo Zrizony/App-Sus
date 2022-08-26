@@ -4,8 +4,3 @@
     align-items: center;
     height: 80vh;
 }
-
-.note-list {
-    animation: fadeInUp;
-    animation-duration: 1s;
-}

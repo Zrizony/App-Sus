@@ -3,7 +3,7 @@
   top: 0.5em;
 
   animation: zoomIn;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 .note-filter input {
