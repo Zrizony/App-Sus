@@ -1,5 +1,6 @@
 import { noteService } from '../services/note.service.js'
 import { NoteTypeBtns } from './note-type-btns.jsx'
+import { NoteVideo } from './note-video.jsx'
 // import { CreateTodo } from './create-todo-note.jsx'
 
 export class NoteAdd extends React.Component {
@@ -37,7 +38,6 @@ export class NoteAdd extends React.Component {
       return
       console.log('noteService.addNote(note)1', noteService.addNote(note))
     noteService.addNote(note)
-      console.log('noteService.addNote(note)2', noteService.addNote(note))
       .then(
         this.setState({
           isActive: false,
@@ -50,7 +50,7 @@ export class NoteAdd extends React.Component {
           },
         })
       )
-      .then(this.props.loadNotes())
+      .then(this.props.loadNotes)
       .then(this.onExpandInput(false))
   }
 
@@ -152,7 +152,7 @@ export class NoteAdd extends React.Component {
               name="url"
               autoComplete="off"
               type="url"
-              placeholder="Enter Video embed URL"
+              placeholder="Enter Video URL"
               value={url}
               onFocus={(ev) => this.onExpandInput(ev, true)}
               onChange={this.handleChange}

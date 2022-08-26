@@ -38,8 +38,8 @@ function query(filterBy) {
       console.log('note.info', note.info);
       return (
         note.info.title.toLowerCase().includes(searchInput.toLowerCase()) ||
-        note.info.txt.toLowerCase().includes(searchInput.toLowerCase()) ||
-        _filterTodo(note.info.todo, searchInput)
+        note.info.txt.toLowerCase().includes(searchInput.toLowerCase()) 
+        // _filterTodo(note.info.todo, searchInput)
       )
       // if (note.type === 'note-todo')
       //   return (
@@ -321,12 +321,12 @@ function _sortByChecked(todo) {
   })
 }
 
-function _filterTodo(todo, filterBy) {
-  console.log('this', todo, filterBy);
-  let filteredToDos = todo.filter((task) => task.txt.toLowerCase().includes(filterBy.toLowerCase()))
-  console.log('filteredToDos', filteredToDos);
-  return
-}
+// function _filterTodo(todo, filterBy) {
+//   console.log('this', todo, filterBy);
+//   let filteredToDos = todo.filter((task) => task.txt.toLowerCase().includes(filterBy.toLowerCase()))
+//   console.log('filteredToDos', filteredToDos);
+//   return
+// }
 
 function _loadFromStorage() {
   return storageService.loadFromStorage(KEY)

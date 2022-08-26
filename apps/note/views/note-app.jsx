@@ -13,14 +13,16 @@ export class NoteApp extends React.Component {
 
   componentDidMount() {
     console.log('didMount')
-    this.loadNotes()
+
+    if (!this.state.notes) return this.loadNotes()
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, filterBy) {
     console.log('didUpdate')
-    // if (prevSearch) {
-    //   this.setState((prevState) => ({ ...prevState, filterBy }), this.loadNotes)
-    // }
+
+    if (prevProps) {
+      this.loadNotes
+    }
   }
 
   onPinNote = (ev, noteId) => {
@@ -54,7 +56,8 @@ export class NoteApp extends React.Component {
     console.log('load filterBy', filterBy)
 
     noteService.query(filterBy).then((notes) => {
-      this.setState({ notes }), () => {
+      this.setState({ notes }),
+        () => {
           console.log('this.state', this.state)
         }
     })

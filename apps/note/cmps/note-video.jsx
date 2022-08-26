@@ -1,16 +1,23 @@
 import { NoteEditor } from './note-editor.jsx'
+import { NoteAdd } from './note-add.jsx'
 
 export function NoteVideo(props) {
-  const { videoId } = props.note.info
   const { note, onChangeNoteColor, onDeleteNote, onDuplicateNote } = props
+  const { videoId } = props.note.info
 
-  // createIframeLink = () => {
-  //   if (videoUrl.charAt(12) == 'y') {    //if the 13th character = y (youtube videos)
-  //       videoId = videoUrl.substring(32);    //key # = from 33rd character on
-  //       let embed = "https://www.youtube.com/embed/" + videoId;   //Add youtube link before key #
-  //       return embed
+  console.log('props', props)
+
+  // function convertUrl(videoUrl) {
+  //   console.log(videoUrl);
+  //   videoUrl = props.note.info.videoUrl
+
+  //   if (videoUrl.charAt(12) == 'y') {   //if the 13th character = y (youtube videos)
+  //     videoId = videoUrl.substring(32)  //key # = from 33rd character on
+  //     let embed = 'https://www.youtube.com/embed/' + videoId    //Add youtube link before key #
+  //     return embed
   //   }
   // }
+  // let url = convertUrl()
 
   return (
     <div className="note-video-container">
@@ -23,7 +30,7 @@ export function NoteVideo(props) {
       <iframe
         width="99%"
         height="300px"
-        src={`https://www.youtube.com/embed/${videoId}`}
+        src= {`https://www.youtube.com/embed/${videoId}`}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       ></iframe>
@@ -39,3 +46,13 @@ export function NoteVideo(props) {
     </div>
   )
 }
+
+///////////////////
+
+// const createIframeLink = () => {
+//   if (videoUrl.charAt(12) == 'y') {    //if the 13th character = y (youtube videos)
+//     videoId = videoUrl.substring(32)   //key # = from 33rd character on
+//     let embed = 'https://www.youtube.com/embed/' + videoId    //Add youtube link before key #
+//     return embed
+//   }
+// }
