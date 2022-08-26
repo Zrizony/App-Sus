@@ -1,8 +1,11 @@
+const { Link, NavLink, withRouter } = ReactRouterDOM
+
 export function Home() {
   return (
     <section className="home">
       <img src="./assets/img/logo.PNG"></img>
       <h2>Managing documentations just became easier</h2>
+      
       <section className="home-apps">
         <article className="home-notes">
           <img src="./assets/img/notes.png" alt="notes" />
@@ -19,6 +22,7 @@ export function Home() {
           <h2>Books</h2>
         </article>
       </section>
+      
     </section>
   )
 }
