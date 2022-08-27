@@ -9,12 +9,14 @@ export class MailCompose extends React.Component {
         }
     }
 
+    // focus on title input
     myRef = React.createRef()
 
     componentDidMount() {
         this.myRef.current.focus()
     }
 
+    // handle changes in state while typing
     handleChange = (ev) => {
         const field = ev.target.name
         const value = ev.target.value
@@ -26,8 +28,6 @@ export class MailCompose extends React.Component {
         }))
 
     }
-
-
 
     render() {
         const { to, subject, bodyText } = this.state

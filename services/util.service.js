@@ -55,7 +55,6 @@ function getDayName(date, locale) {
     return date.toLocaleDateString(locale, { weekday: 'long' })
 }
 
-
 function getMonthName(date) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -79,5 +78,4 @@ function getTime(milsec) {
     if (hours < 10) { hours = "0" + hours }
     if (minutes < 10) { minutes = "0" + minutes }
     return hours + ':' + minutes
-
 }

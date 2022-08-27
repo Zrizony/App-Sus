@@ -8,19 +8,16 @@ export class BookDetails extends React.Component {
     }
 
     componentDidMount() {
-        console.log("didMount");
         this.loadBook()
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log("didUpdate");
         if (prevProps.match.params.bookId !== this.props.match.params.bookId) {
             this.loadBook()
         }
     }
 
     loadBook = () => {
-        console.log("loading book");
         const { bookId } = this.props.match.params
         bookService.getBookById(bookId)
             .then((book) => {
@@ -30,8 +27,6 @@ export class BookDetails extends React.Component {
                 })
             })
     }
-
-
 
     selectedCurrency = () => {
         const { currencyCode } = this.state.book.listPrice
@@ -81,22 +76,25 @@ export class BookDetails extends React.Component {
         const { book } = this.state
         if (!book) { return <div>Loading...</div> }
         return <section className="book-details">
+
             <h2>{book.title}</h2>
             <h3>Author: {book.authors[0]}</h3>
             <p>{book.subtitle}</p>
             <p>{book.description}</p>
-            <hr></hr>
-            <img src={`${book.thumbnail}`}></img>
 
+            <hr />
+
+            <img src={`${book.thumbnail}`}></img>
             <p>Price: <span className={this.priceColor()}>{book.listPrice.amount}</span>{this.selectedCurrency()}</p>
             <p>{this.isOnSale()}</p>
-            <hr></hr>
+
+            <hr />
+
             <p>Language: {this.selectedLanguage()}</p>
             <p>Pages: {book.pageCount} - {this.bookPages()}</p>
             <p>Published: {book.publishedDate} - {this.bookAge()}</p>
-            <hr></hr>
 
-
+            <hr />
 
             <Link to={"/books/review-add/" + book.id}>
                 <button>Add Review</button>

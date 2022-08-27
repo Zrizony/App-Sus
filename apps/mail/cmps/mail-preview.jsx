@@ -1,8 +1,5 @@
 import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
-const { Link, NavLink, withRouter } = ReactRouterDOM
-
-
 
 export class MailPreview extends React.Component {
 
@@ -14,10 +11,7 @@ export class MailPreview extends React.Component {
         this.setState({ mail: this.props.mail })
     }
 
-    componentDidUpdate() {
-        // console.log("Mail preview did update");
-    }
-
+    // this function returns a date string
     renderDate = () => {
         const { sentAt } = this.props.mail
         const currTime = Date.now()
@@ -33,6 +27,7 @@ export class MailPreview extends React.Component {
         }
     }
 
+    // read/unread from mail inbox
     onEnvelopClick = (ev) => {
         ev.stopPropagation()
 
@@ -44,6 +39,7 @@ export class MailPreview extends React.Component {
             })
     }
 
+    // this function returns the correct envelop icon
     isEnvelopOpen = () => {
         if (this.state.mail.isRead) {
             return <i className="fa-regular fa-envelope-open"></i>
@@ -60,6 +56,7 @@ export class MailPreview extends React.Component {
         }
     }
 
+    // this function returns the correct star icon and updates the current state
     onStarMail = (ev) => {
         ev.stopPropagation()
 
@@ -81,8 +78,6 @@ export class MailPreview extends React.Component {
             return <i className="star fa-regular fa-star"></i>
         }
     }
-
-
 
     render() {
         if (!this.state.mail) return <div>Loading...</div>

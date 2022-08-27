@@ -32,6 +32,7 @@
   outline: none;
   margin: 0;
 }
+
 .mail-compose textarea {
   border: 0;
 }
@@ -64,6 +65,7 @@
   height: 30px;
   padding-left: 10px;
 }
+
 .mail-compose .input::placeholder {
   color: #969696;
 }
@@ -82,6 +84,7 @@
   padding-right: 5px;
   font-size: 0.875em;
 }
+
 .compose-title button {
   align-self: center;
   background-color: transparent;

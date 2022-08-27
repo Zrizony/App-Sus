@@ -6,27 +6,27 @@ export const mailService = {
     starMail,
     trashMail,
     envelopClick,
-    unreadMails,
     addSentMail,
-    getUnReadLength,
     setReadOpenedMail
 }
 
+// Variables 
 const STORAGE_KEY = 'mailDB'
 
+// Functions //
 
+// this function returns the database infomation 
 function query(filterBy) {
     let gMails = storageService.loadFromStorage(STORAGE_KEY)
     if (!gMails) {
-        console.log("!mails");
         gMails = _createMails()
     }
     gMails.sort((a, b) => b.sentAt - a.sentAt)
     storageService.saveToStorage(STORAGE_KEY, gMails)
 
+    // filtering by filter input if it was given
     if (filterBy) {
         const { searchInput } = filterBy
-
 
         gMails = gMails.filter((mail) => {
             return (
@@ -35,26 +35,24 @@ function query(filterBy) {
                 mail.from.toLowerCase().includes(searchInput.toLowerCase()) ||
                 mail.fullName.toLowerCase().includes(searchInput.toLowerCase())
             )
-
         })
-
-
     }
-
 
     return Promise.resolve(gMails)
 }
 
+// setting 'isStared' true/false 
 function starMail(mailId) {
     let gMails = storageService.loadFromStorage(STORAGE_KEY)
 
     const mailIdx = gMails.findIndex((mail) => { return mailId === mail.id })
     gMails[mailIdx].isStared = !gMails[mailIdx].isStared
     storageService.saveToStorage(STORAGE_KEY, gMails)
-    console.log("stared changed", gMails[mailIdx].isStared);
+
     return Promise.resolve()
 }
 
+//setting 'isRead' true/false
 function envelopClick(mailId) {
     let gMails = storageService.loadFromStorage(STORAGE_KEY)
 
@@ -65,12 +63,7 @@ function envelopClick(mailId) {
     return Promise.resolve()
 }
 
-function getUnReadLength() {
-    let gMails = storageService.loadFromStorage(STORAGE_KEY)
-
-    return Promise.resolve(gMails.length)
-}
-
+// setting 'isRead = true' when reading new mail
 function setReadOpenedMail(mailId) {
     let gMails = storageService.loadFromStorage(STORAGE_KEY)
 
@@ -81,32 +74,24 @@ function setReadOpenedMail(mailId) {
     return Promise.resolve()
 }
 
+// this function trash and delete mails
 function trashMail(mailId) {
     let gMails = storageService.loadFromStorage(STORAGE_KEY)
 
     const mailIdx = gMails.findIndex((mail) => { return mail.id === mailId })
     if (gMails[mailIdx].isTrashed === true) {
-        console.log(gMails[mailIdx].id, "deleted from servie");
         gMails.splice(mailIdx, 1)
         if (gMails.length === 0) { gMails = null }
         storageService.saveToStorage(STORAGE_KEY, gMails)
         return Promise.resolve("deleted")
     } else {
-        console.log(gMails[mailIdx].id, "trashed from servie");
         gMails[mailIdx].isTrashed = true
         storageService.saveToStorage(STORAGE_KEY, gMails)
         return Promise.resolve("trashed")
     }
 }
 
-function unreadMails() {
-    let gMails = storageService.loadFromStorage(STORAGE_KEY)
-    gMails = gMails.filter((mail) => {
-        return !mail.isRead
-    })
-    return Promise.resolve(gMails.length)
-}
-
+// add new user sent mails
 function addSentMail(to, subject, bodyText) {
     let gMails = storageService.loadFromStorage(STORAGE_KEY)
     const newSent = {
@@ -129,6 +114,7 @@ function addSentMail(to, subject, bodyText) {
     return Promise.resolve()
 }
 
+// create demo database
 function _createMails() {
     return [{
         id: utilService.makeId(),

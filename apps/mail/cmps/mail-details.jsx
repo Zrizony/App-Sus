@@ -1,30 +1,28 @@
 const { Link, NavLink, withRouter } = ReactRouterDOM
 import { eventBusService } from "../../../services/event-bus.service.js"
 
-
 function _MailDetails({ mail, onReturn, onTrashMail, history }) {
 
-    function onTrashInsideMail(ev, mailId) {
-        history.push('/mail/inbox')
-        onTrashMail(ev, mailId)
-    }
 
+    // this function returns a date string
     function getDate() {
         let date = new Date(mail.sentAt)
         date = date.toDateString()
 
-
         return date
     }
 
+    // extract an email to the notes app as a note
     function onSentToNotes() {
         eventBusService.emit('send-mail-to-notes', { mail })
-        history.goBack()
-
-
-
+        history.push('/note')
     }
 
+    // trash mail and return to the mailbox
+    function onTrashInsideMail(ev, mailId) {
+        history.goBack()
+        onTrashMail(ev, mailId)
+    }
 
     return <section className="mail-details">
         <div className="buttons">
@@ -34,7 +32,6 @@ function _MailDetails({ mail, onReturn, onTrashMail, history }) {
                 <button onClick={(ev) => { onTrashInsideMail(ev, mail.id) }}><i className="fa-regular fa-trash-can"></i></button>
             </div>
         </div>
-        {/* <hr /> */}
         <h2>{mail.subject}</h2>
         <div className="flex space-between contact-details">
             <div className="contact">
