@@ -89,7 +89,7 @@ export class MailPreview extends React.Component {
         const { id, fullName, subject, body, isRead, isStared } = this.state.mail
 
         return <li onClick={() => { this.props.onOpenMail(this.state.mail) }} className={`mail-item ${(isRead ? "read" : '')}`}>
-            <span onClick={this.onStarMail} className="">
+            <span onClick={this.onStarMail} className="gen-star">
                 {this.checkIfStared()}
             </span>
             <span className="full-name">
@@ -98,7 +98,7 @@ export class MailPreview extends React.Component {
             <span className="subject">
                 {subject}
             </span>
-            <span> - </span>
+            <span className="seperator"> - </span>
             <span className="body">
                 {body}
             </span>

@@ -20,7 +20,7 @@ export class MailApp extends React.Component {
         unReadMails: null
     }
     // unchangble
-    PAGE_SIZE = 10
+    PAGE_SIZE = 20
 
     componentDidMount() {
         console.log("Component Did Mount");
