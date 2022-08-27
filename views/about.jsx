@@ -4,7 +4,11 @@ export function About() {
     <section className="full about">
       <h1>Pssst... Hey you... Yeah you!</h1>
       <h2>This amazing and useful site was created with user comfort as high piority in mind</h2>
-      <h2>▼ If you wish to explore more about our other projects. Please! be our guest and see them all down below! ▼</h2>
+      <h2> If you wish to explore more about our other projects. Please! be our guest and see them all down below! </h2>
+      <div className="main-layout flex space-between guiding-arrows">
+      <span>▼</span>
+      <span>▼</span>
+      </div>
 
         <section className="about-us">
             <article className="about-me barak">
@@ -12,17 +16,17 @@ export function About() {
                 <p>Musician and Web Developer</p>
                 <ul className="clean-list flex">
                     <li>
-                        <a href="https://github.com/ibarak2">
+                        <a href="https://github.com/ibarak2" target="_blank">
                             <i className="fa-brands fa-github"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.linkedin.com/in/barak-kaldess/">
+                        <a href="https://www.linkedin.com/in/barak-kaldess/" target="_blank">
                             <i className="fa-brands fa-linkedin"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="" target="_blank">
                             <i className="fa-brands fa-instagram"></i>
                         </a>
                     </li>
@@ -34,17 +38,17 @@ export function About() {
                 <p>Illustrator and Web Developer</p>
                 <ul className="clean-list flex">
                     <li>
-                        <a href="https://github.com/Zrizony">
+                        <a href="https://github.com/Zrizony" target="_blank">
                             <i className="fa-brands fa-github"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.linkedin.com/in/roy-yam/">
+                        <a href="https://www.linkedin.com/in/roy-yam/" target="_blank">
                             <i className="fa-brands fa-linkedin"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/royyam99/">
+                        <a href="https://www.instagram.com/royyam99/" target="_blank">
                             <i className="fa-brands fa-instagram"></i>
                         </a>
                     </li>

@@ -1,5 +1,4 @@
 .about {
-  /* width: 100vw; */
   height: 90vh;
   margin-top: 1rem;
   animation: fadeIn;
@@ -7,17 +6,27 @@
 }
 
 .about h1 {
-  font-size: 5em;
+  font-size: 2.5em;
 }
 
 .about h2 {
   color: rgb(150, 150, 150);
 }
 
+.guiding-arrows {
+  max-width: 80vw;
+  margin: auto;
+}
+
 .about-us {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   margin-top: 3em;
+}
+
+.about-me {
+  margin-bottom: 3rem;
 }
 
 .about-me h2 {
@@ -49,8 +58,11 @@
 
 .newsletter {
   display: grid;
+  margin: auto;
+  padding: 1rem 0;
   justify-items: center;
-  margin-top: 10em;
+  max-width: 90vw;
+  border-top: 0.3rem dotted grey;
 }
 
 .newsletter h3 {
@@ -87,7 +99,6 @@
 .newsletter-form input[type=text] {
   border-radius: 5px 5px 0 0;
   margin-bottom: 0;
-  /* border-bottom: 1px solid rgb(200, 200, 200); */
 }
 
 .newsletter-form input[type=text]:focus {
@@ -108,4 +119,23 @@
 .newsletter-form input[type=email]:focus {
   outline: none;
   border: none;
+}
+
+/* medium */
+@media (min-width: 420px) {
+
+  .guiding-arrows {
+    max-width: unset;
+    margin: unset;
+  }
+
+  .about-us {
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 3em;
+  }
+
+  .newsletter {
+  border-top: none;
+  }
 }

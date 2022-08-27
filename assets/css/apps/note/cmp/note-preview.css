@@ -1,12 +1,14 @@
+.note-preview-shadow-protection {
+  display: contents;
+}
+
 .note-preview {
   position: relative;
   min-height: 100px;
   display: flex;
-  align-items: center;
   border-radius: 8px;
   background-color: aliceblue;
-  margin-bottom: 10px;
-  break-inside: avoid-column;
+  break-inside: auto;
 }
 
 .pin-btn {
@@ -77,6 +79,7 @@
 .note-text-container {
   display: flex;
   flex-direction: column;
+  width: -webkit-fill-available;
 }
 
 .note-text-container textarea {
@@ -100,10 +103,4 @@
 .seperator {
   padding-bottom: 8px;
   border-bottom: 1px solid rgba(128, 128, 128, 0.194);
-}
-
-@media (min-width: 620px) {
-  .note-preview {
-    margin-right: 10px;
-  }
 }

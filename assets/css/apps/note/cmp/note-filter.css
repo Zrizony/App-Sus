@@ -1,6 +1,7 @@
 .note-filter {
   position: absolute;
-  top: 0.5em;
+  top: 5em;
+  z-index: 10;
 
   animation: zoomIn;
   animation-duration: 0.5s;
@@ -9,7 +10,7 @@
 .note-filter input {
   border: 0;
   height: 46px;
-  width: 30em;
+  width: 15rem;
   padding-left: 50px;
   border-radius: 8px;
   background-color: #474747;
@@ -37,4 +38,32 @@
   text-align: center;
   font-size: 1.3em;
   border: 0;
+}
+
+/* medium */
+@media (min-width: 420px) {
+
+  .note-filter {
+    position: relative;
+    top: -3.5em;
+    left: 3rem;
+  }
+
+  .note-filter input {
+    width: 42vw;
+  }
+}
+
+/* large */
+@media (min-width: 770px) {
+  .note-filter {
+    position: absolute;
+    top: 0.5em;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .note-filter input {
+    width: 42vw;
+  }
 }

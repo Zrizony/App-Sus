@@ -1,0 +1,14 @@
+.simple-counter {
+    background-color: bisque;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.simple-counter button {
+    margin: 5px;
+    border:0;
+    background-color: brown;
+    color: whitesmoke;
+    border-radius: 50%;
+}

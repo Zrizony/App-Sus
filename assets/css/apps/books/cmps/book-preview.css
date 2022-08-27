@@ -1,0 +1,9 @@
+.book-preview {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.book-preview img {
+  width: 200px;
+  cursor: pointer;
+}

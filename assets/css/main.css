@@ -1,21 +1,21 @@
-/* Setup */
+/* setup */
 @import "./setup/variables.css";
 @import "./setup/typography.css";
 
-/* Basics */
+/* basics */
 @import "./basics/base.css";
 @import "./basics/helpers.css";
 @import "./basics/layout.css";
 
-/* Views */
+/* views */
 @import "./views/home.css";
 @import "./views/about.css";
 
-/* Cmps */
-/* Cmps */
-
+/* cmps */
 @import "./cmps/user-msg.css";
 @import "./cmps/app-header.css";
+
+/* mail app */
 @import "./apps/mail/cmps/mail-item.css";
 @import "./apps/mail/cmps/mail-filter.css";
 @import "./apps/mail/cmps/mail-sidebar.css";
@@ -36,3 +36,15 @@
 @import "./apps/note/cmp/note-todo.css";
 
 @import "./apps/note/views/note-app.css";
+
+/* books app */
+@import "./apps/books/cmps/simple-counter.css";
+@import "./apps/books/cmps/book-preview.css";
+@import "./apps/books/cmps/book-list.css";
+@import "./apps/books/cmps/book-details.css";
+@import "./apps/books/cmps/book-filter.css";
+@import "./apps/books/cmps/review-add.css";
+@import "./apps/books/cmps/books-result-list.css";
+@import "./apps/books/cmps/user-preview.css";
+
+@import "./apps/books/views/book-app.css";

@@ -1,12 +1,33 @@
 .note-list {
   width: 100%;
-  column-width: 240px;
-  column-count: auto;
-  gap: 1px;
-  margin-top: 40px;
-  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  gap: 1rem;
   color: rgb(100, 100, 100);
 
   animation: fadeIn;
   animation-duration: 1s;
+}
+
+/* medium */
+@media (min-width: 420px) {
+  .note-list {
+    width: 90vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: rgb(100, 100, 100);
+  }
+}
+
+/* large */
+@media (min-width: 770px) {
+
+  .note-list {
+    margin-top: 5rem;
+  }
 }
