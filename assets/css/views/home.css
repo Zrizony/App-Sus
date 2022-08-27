@@ -5,12 +5,12 @@
 .home img {
     width: 20em;
     animation: fadeInDown;
-    animation-duration: 1s;
+    animation-duration: 0.7s;
 }
 
 .home h2 {
     animation: fadeInDown;
-    animation-duration: 1s;
+    animation-duration: 0.7s;
 }
 
 .home-apps {
@@ -39,15 +39,15 @@
 
 .home-notes {
     animation: fadeInLeft;
-    animation-duration: 1s;
+    animation-duration: 0.7s;
 }
 
 .home-email {
-    animation: fadeInUp;
-    animation-duration: 1s;
+    animation: zoomIn;
+    animation-duration: 0.7s;
 }
 
 .home-books {
     animation: fadeInRight;
-    animation-duration: 1s;
+    animation-duration: 0.7s;
 }

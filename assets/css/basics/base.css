@@ -3,6 +3,8 @@ body {
   text-align: center;
   margin: 0;
   background-color: var(--main-bg-color);
+  /* background-color: rgba(145, 145, 145, 0.514); */
+  background-image: url('../../img/wood.png');
   color: var(--color1);
   font-weight: normal;
   font-family: product-sans-regular;
