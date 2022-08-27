@@ -1,7 +1,30 @@
+.book-details {
+  animation: fadeIn;
+  animation-duration: 0.3s;
+}
+
+.book-details p {
+  margin-bottom: 0;
+}
+
+.book-details img {
+  width: 22vw;
+}
+
 .red {
   color: red;
 }
 
 .green {
   color: green;
+}
+
+.book-details button {
+  color: #3d3d3d;
+  background-image: linear-gradient(to bottom, #ffffff, #c9c9c9);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin:  1rem 1rem;
 }

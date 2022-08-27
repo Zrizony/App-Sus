@@ -47,10 +47,10 @@ export class BookApp extends React.Component {
     render() {
         const { books } = this.state
 
-        return <section>
+        return <section className="book-app">
             <h1>Book Shop Home-page</h1>
-            <div className='flex align-center space-evenly'>
-                <AddBook onAddBook={this.onAddBook} />
+            <div className='flex align-center space-evenly books-inputs'>
+                <AddBook />
                 <BookFilter onSetFilter={this.onSetFilter} />
             </div>
 

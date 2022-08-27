@@ -1,0 +1,61 @@
+.book-app {
+  text-transform: capitalize;
+
+  animation: fadeIn;
+  animation-duration: 0.3s;
+}
+
+.books-inputs {
+  margin: 1rem;
+}
+
+.add-book input {
+  border-radius: 2px;
+  border: none;
+  padding: 0.3rem;
+}
+
+.add-book input:focus {
+  outline: none;
+  padding: 1rem;
+}
+
+.add-book form button {
+  color: #3d3d3d;
+  background-image: linear-gradient(to bottom, #ffffff, #c9c9c9);
+  border: none;
+  border-radius: 0 0 5px 5px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.add-book form button:hover {
+  background-image: linear-gradient(to bottom, #ffffff, #adadad);
+  text-decoration: none;
+}
+
+.book-filter input {
+  border-radius: 2px;
+  border: none;
+  padding: 0.3rem;
+
+}
+
+.book-filter input:focus {
+  outline: none;
+  padding: 1rem;
+}
+
+.book-filter form button {
+  color: #3d3d3d;
+  background-image: linear-gradient(to bottom, #ffffff, #c9c9c9);
+  border: none;
+  border-radius: 0 0 5px 5px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.book-filter form button:hover {
+  background-image: linear-gradient(to bottom, #ffffff, #adadad);
+  text-decoration: none;
+}
