@@ -34,7 +34,7 @@ function query(filterBy) {
 
     const filteredNotes = notes.filter((note) => {
 
-      console.log('searchInput2' ,searchInput)
+      console.log('searchInput2', searchInput)
       console.log('note.info', note.info)
 
       return (
@@ -62,7 +62,7 @@ function _createNotes() {
       info: {
         title: "Don't forget to breath",
         txt: '',
-        url: '../../../assets/img/breath.jpg',
+        url: 'assets/img/breath.jpg',
         todo: [],
       },
       style: {
@@ -139,7 +139,7 @@ function _createNotes() {
     },
     {
       id: 'f780dc',
- 
+
       type: 'note-txt',
       isPinned: true,
       info: {
