@@ -1,4 +1,5 @@
 const { Link, NavLink, withRouter } = ReactRouterDOM
+import { eventBusService } from "../../../services/event-bus.service.js"
 
 
 function _MailDetails({ mail, onReturn, onTrashMail, history }) {
@@ -16,11 +17,22 @@ function _MailDetails({ mail, onReturn, onTrashMail, history }) {
         return date
     }
 
+    function onSentToNotes() {
+        eventBusService.emit('send-mail-to-notes', { mail })
+        history.push('/note')
+
+
+
+    }
+
 
     return <section className="mail-details">
         <div className="buttons">
             <button onClick={onReturn}><i className="fa-solid fa-arrow-left"></i></button>
-            <button onClick={(ev) => { onTrashInsideMail(ev, mail.id) }}><i className="fa-regular fa-trash-can"></i></button>
+            <div>
+                <button onClick={onSentToNotes}><i className="fa-solid fa-arrow-up-right-from-square"></i></button>
+                <button onClick={(ev) => { onTrashInsideMail(ev, mail.id) }}><i className="fa-regular fa-trash-can"></i></button>
+            </div>
         </div>
         {/* <hr /> */}
         <h2>{mail.subject}</h2>

@@ -5,6 +5,7 @@ import { NoteAdd } from '../cmps/note-add.jsx'
 import { NoteFilter } from '../cmps/note-filter.jsx'
 
 export class NoteApp extends React.Component {
+  unsubscribe
   state = {
     filterBy: '',
     notes: null,
@@ -13,6 +14,10 @@ export class NoteApp extends React.Component {
 
   componentDidMount() {
     console.log('didMount')
+    this.unsubscribe = eventBusService.on('send-mail-to-notes', (mail) => {
+      console.log("mail:", mail);
+      this.onAddMailNote(mail)
+    })
     if (!this.state.notes) return this.loadNotes()
   }
 
@@ -55,10 +60,31 @@ export class NoteApp extends React.Component {
 
     noteService.query(filterBy)
       .then((notes) => {
-      this.setState({ notes })
-      // ,
-      //   () => {
-      //   }
+        this.setState({ notes })
+        // ,
+        //   () => {
+        //   }
+      })
+  }
+
+  onAddMailNote = (mail) => {
+    const newMail = mail
+
+    const newNote = {
+      key: '',
+      isActive: false,
+      noteType: 'note-txt',
+      noteInfo: {
+        title: newMail.mail.subject,
+        txt: newMail.mail.body,
+        url: '',
+        todo: [''],
+      }
+    }
+
+    noteService.addNote(newNote).then(() => {
+      this.loadNotes()
+      this.unsubscribe()
     })
   }
 
@@ -67,16 +93,16 @@ export class NoteApp extends React.Component {
     if (!notes) return <div>loading...</div>
     return (
       <React.Fragment>
-            <section className="note-app">
-              <NoteFilter onSetFilter={this.onSetFilter} />
-              <NoteAdd loadNotes={this.loadNotes} />
-              <NoteList
-                notes={notes}
-                onDeleteNote={this.onDeleteNote}
-                onDuplicateNote={this.onDuplicateNote}
-                onPinNote={this.onPinNote}
-              />
-            </section>
+        <section className="note-app">
+          <NoteFilter onSetFilter={this.onSetFilter} />
+          <NoteAdd loadNotes={this.loadNotes} />
+          <NoteList
+            notes={notes}
+            onDeleteNote={this.onDeleteNote}
+            onDuplicateNote={this.onDuplicateNote}
+            onPinNote={this.onPinNote}
+          />
+        </section>
       </React.Fragment>
     )
   }

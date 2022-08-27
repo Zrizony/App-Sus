@@ -104,7 +104,6 @@ function unreadMails() {
     gMails = gMails.filter((mail) => {
         return !mail.isRead
     })
-    console.log("length: ", gMails.length);
     return Promise.resolve(gMails.length)
 }
 
