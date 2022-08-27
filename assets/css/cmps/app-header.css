@@ -2,8 +2,7 @@ header {
   position: relative;
   background: var(--secondary-bg-color);
   z-index: 5;
-
-  min-width: 460px;
+  /* min-width: 460px; */
 }
 
 .app-header {

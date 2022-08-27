@@ -19,7 +19,7 @@ function _MailDetails({ mail, onReturn, onTrashMail, history }) {
 
     function onSentToNotes() {
         eventBusService.emit('send-mail-to-notes', { mail })
-        history.push('/note')
+        history.goBack()
 
 
 
