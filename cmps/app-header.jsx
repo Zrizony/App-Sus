@@ -1,4 +1,4 @@
-const { Link, NavLink, withRouter } = ReactRouterDOM
+const { Link, NavLink } = ReactRouterDOM
 
 export function AppHeader() {
 
@@ -8,10 +8,23 @@ export function AppHeader() {
                 <img src="../assets/img/logo.PNG" alt="logo" />
             </Link>
             <nav>
-                <NavLink exact to="/">Home</NavLink>
+                {/* <NavLink exact to="/">Home</NavLink>
                 <NavLink to="/mail/inbox">Mail</NavLink>
-                <NavLink to="/note">Note</NavLink>
-                <NavLink to="/about">About</NavLink>
+                <NavLink to="/note">Notes</NavLink>
+                <NavLink to="/about">About</NavLink> */}
+
+                <section className="dropdown">
+                    <button className="btn-dropdown">
+                        <i class="fa-brands fa-ethereum"></i>
+                    </button>
+                    <div className="dropdown-content">
+                        <NavLink exact to="/">Home</NavLink>
+                        <NavLink to="/mail/inbox">Mail</NavLink>
+                        <NavLink to="/note">Notes</NavLink>
+                        <NavLink to="/books">Books</NavLink>
+                        <NavLink to="/about">About</NavLink>
+                    </div>
+                </section>
             </nav>
         </div>
     </header>
