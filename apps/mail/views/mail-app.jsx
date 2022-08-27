@@ -36,14 +36,6 @@ export class MailApp extends React.Component {
             this.loadInbox()
             return
         }
-
-        // console.log(prevState.inboxToDisplay);
-        // console.log(this.state.inboxToDisplay);
-        // if (prevState.inboxToDisplay !== this.state.inboxToDisplay) {
-        //     console.log("this");
-        //     this.setCurrPages()
-        //     return
-        // }
     }
 
     // load content
@@ -60,7 +52,6 @@ export class MailApp extends React.Component {
             })
             .then((res) => {
                 this.setState({ inbox: res, }, () => {
-                    console.log("curr inbox:", this.state.inbox);
                     this.setCurrPages()
                 })
             })
