@@ -15,7 +15,7 @@ export function AppHeader() {
 
                 <section className="dropdown">
                     <button className="btn-dropdown">
-                        <i class="fa-brands fa-ethereum"></i>
+                        <i className="fa-brands fa-ethereum"></i>
                     </button>
                     <div className="dropdown-content">
                         <NavLink exact to="/">Home</NavLink>
