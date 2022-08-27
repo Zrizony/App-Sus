@@ -62,7 +62,7 @@ function _createNotes() {
       info: {
         title: "Don't forget to breath",
         txt: '',
-        url: '../../../assets/img/breath.jpg',
+        url: 'assets/img/breath.jpg',
         todo: [],
       },
       style: {
