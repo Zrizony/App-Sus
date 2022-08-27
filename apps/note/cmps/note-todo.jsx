@@ -2,24 +2,30 @@ import { noteService } from '../services/note.service.jNoteEditors'
 import { NoteEditor } from './note-editor.jsx'
 
 export class NoteTodo extends React.Component {
+
+  //---- states ----//
   state = {
     todo: [''],
   }
 
+   //---- first render of the todo note comopnent ----//
   componentDidMount() {
     const { todo } = this.props.note.info
     this.setState({ todo })
   }
 
+  //---- rendering toggleCheck on todo item with onClick ----//
   onToggleCheck = (todoIdx, noteId) => {
     noteService.toggleTodoCheck(todoIdx, noteId)
       .then((todo) => this.setState({ todo }))
   }
 
+  //---- rendering todo note with the desired values ----//
   render() {
     const { todo } = this.state
     const { note } = this.props
     
+    //-- returning the note layout and content
     return (
       <div className="note-todo-container">
         {note.info.title && (

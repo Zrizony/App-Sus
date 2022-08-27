@@ -1,5 +1,6 @@
 export function NoteTypeBtns({ onChangeType }) {
 
+  //---- add new note buttons. each one changing the input value with onClick ----//
   return (
     <div className="type-btns">
       <button

@@ -1,17 +1,18 @@
 import { NoteEditor } from './note-editor.jsx'
-import { NoteAdd } from './note-add.jsx'
 
 export function NoteVideo(props) {
   const { note, onChangeNoteColor, onDeleteNote, onDuplicateNote } = props
 
+  //---- converting normal youtube video link to youtube embed link ----//
   function convertUrl() {
     if (note.info.url.includes('youtube.com')) {
-      const videoId = note.info.url.slice(32, 43) //key # = from 33rd character on
-      const embed = 'https://www.youtube.com/embed/' + videoId //Add youtube link before key #
+      const videoId = note.info.url.slice(32, 43) //videoId found between 33rd and 42 character
+      const embed = 'https://www.youtube.com/embed/' + videoId //Add embed youtube link before videoId
       return embed
     }
   }
 
+  //---- returning video note layout and content ----//
   return (
     <div className="note-video-container">
       <button

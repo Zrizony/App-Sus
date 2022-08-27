@@ -1,8 +1,9 @@
 import { noteService } from '../services/note.service.js'
 import { NoteTypeBtns } from './note-type-btns.jsx'
-import { NoteVideo } from './note-video.jsx'
 
 export class NoteAdd extends React.Component {
+
+  //---- states ----//
   state = {
     key: '',
     isActive: false,
@@ -15,17 +16,21 @@ export class NoteAdd extends React.Component {
     },
   }
 
+  //---- created and attached to React elements via the ref attribute ----//
   inputRef = React.createRef()
 
+  //---- getting the values for the curecct inputs on add new note ----//
   handleChange = ({ target }) => {
     const value = target.value
     const field = target.name
+
     this.setState((prevState) => ({
       ...prevState,
       noteInfo: { ...prevState.noteInfo, [field]: value },
     }))
   }
 
+  //---- submiting new note with currect values ----//
   onAddNote = (ev) => {
     ev.preventDefault()
     const note = this.state
@@ -54,11 +59,13 @@ export class NoteAdd extends React.Component {
       .then(this.onExpandInput(false))
   }
 
+  //---- showing title input and content input when focusing on content input ----//
   onExpandInput = (ev, isOpen) => {
     if (ev.relatedTarget) return
     this.setState({ isActive: isOpen })
   }
 
+  //---- opening both inputs (title and content) for the clicked note type button ----//
   onChangeType = (ev) => {
     ev.preventDefault()
 
@@ -80,12 +87,11 @@ export class NoteAdd extends React.Component {
     todo[idx] = ev.target.value
     todo = this.clearTodoLine()
     this.handleChange({ target: { value: todo, name: 'todo' } })
-    console.log('todo', todo)
     todo.push('')
     this.setState({ todo })
   }
 
-  //---- render ----//
+  //---- rendering new note inputs and buttons ----//
   render() {
     const { txt, title, url, todo } = this.state.noteInfo
     const { isActive, noteType, key } = this.state

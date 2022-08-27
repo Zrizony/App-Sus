@@ -13,8 +13,10 @@ export const noteService = {
   togglePin,
 }
 
+//---- notes storage key ----//
 const KEY = 'notesDB'
 
+//---- loading data from storage ----//
 function query(filterBy) {
   let notes = _loadFromStorage() || _createNotes()
 
@@ -30,28 +32,23 @@ function query(filterBy) {
 
   if (filterBy !== '') {
     let { searchInput } = filterBy
-    console.log('searchInput1', searchInput)
-
     const filteredNotes = notes.filter((note) => {
-
-      console.log('searchInput2', searchInput)
-      console.log('note.info', note.info)
-
-      return (
-        note.info.title.toLowerCase().includes(searchInput.toLowerCase())
-      )
+      return note.info.title.toLowerCase().includes(searchInput.toLowerCase())
     })
     return Promise.resolve(filteredNotes)
   }
+  
   return Promise.resolve(notes)
 }
 
+//---- catching note by his id ----//
 function getNoteById(id) {
   let notes = _loadFromStorage()
   const note = notes.find((note) => note.id === id)
   return Promise.resolve(note)
 }
 
+//---- adding hardcoded to storage notes ----//
 function _createNotes() {
   const notes = [
     {
@@ -109,7 +106,7 @@ function _createNotes() {
       id: '07c3B8',
 
       type: 'note-todo',
-      isPinned: true,
+      isPinned: false,
       info: {
         title: 'Todo list for tomorrow',
         item: '',
@@ -162,7 +159,7 @@ function _createNotes() {
         title: 'True work of art',
         text: '',
         url: 'https://m.media-amazon.com/images/M/MV5BZjRhMTBlYmEtZGI1Zi00OTRjLWEwOGEtOTY0YjIzYjljYjY4XkEyXkFqcGdeQXVyNTMyODM3MTg@._V1_FMjpg_UX1000_.jpg',
-        todo: []
+        todo: [],
       },
       style: {
         backgroundColor: '#FFF475',
@@ -172,7 +169,7 @@ function _createNotes() {
       id: '82B794',
 
       type: 'note-video',
-      isPinned: false,
+      isPinned: true,
       info: {
         title: 'Childhood',
         text: '',
@@ -190,6 +187,7 @@ function _createNotes() {
   return notes
 }
 
+//---- adding new note ----//
 function addNote(note) {
   const { noteInfo, noteType } = note
   switch (noteType) {
@@ -226,22 +224,16 @@ function addNote(note) {
   return Promise.resolve(newNote)
 }
 
+//---- allowing the user to update text notes directly on the note ----//
 function updateNoteText(updatedNote, inputText, inputTitle) {
   updatedNote.info.txt = inputText
   updatedNote.info.title = inputTitle
-  const updatedNotes = updateNote(updatedNote)
+  const updatedNotes = _updateNote(updatedNote)
   _saveToStorage(updatedNotes)
   return Promise.resolve()
 }
 
-function updateNote(updatedNote) {
-  const notes = _loadFromStorage()
-  return notes.map((note) => {
-    if (note.id === updatedNote.id) return updatedNote
-    return note
-  })
-}
-
+//---- change note background ----//
 function changeNoteColor(noteId, color) {
   const notes = _loadFromStorage()
   const note = notes.find((note) => note.id === noteId)
@@ -250,6 +242,7 @@ function changeNoteColor(noteId, color) {
   return Promise.resolve()
 }
 
+//---- duplicating note ----//
 function duplicateNote(noteId) {
   const notes = _loadFromStorage()
   const note = notes.find((note) => {
@@ -269,6 +262,7 @@ function duplicateNote(noteId) {
   return Promise.resolve(notes)
 }
 
+//---- removing note localstorage ----//
 function deleteNote(noteId) {
   const notes = _loadFromStorage()
   const idx = notes.findIndex((note) => note.id === noteId)
@@ -278,6 +272,7 @@ function deleteNote(noteId) {
   return Promise.resolve(notes)
 }
 
+//---- toggeling todo item checkbox value ----//
 function toggleTodoCheck(idx, noteId) {
   const notes = _loadFromStorage()
   const note = notes.find((note) => noteId === note.id)
@@ -288,6 +283,7 @@ function toggleTodoCheck(idx, noteId) {
   return Promise.resolve(todo)
 }
 
+//---- toggeling note pin value ----//
 function togglePin(noteId) {
   const notes = _loadFromStorage()
   const note = notes.find((note) => noteId === note.id)
@@ -298,6 +294,17 @@ function togglePin(noteId) {
 }
 
 //---- Private functions - use in this file only! ----//
+
+//---- updating text note after change ----//
+function _updateNote(updatedNote) {
+  const notes = _loadFromStorage()
+  return notes.map((note) => {
+    if (note.id === updatedNote.id) return updatedNote
+    return note
+  })
+}
+
+//---- sorting notes with pinned ones being first on the list ----//
 function _sortByPinned(notes) {
   return notes.sort((a, b) => {
     if (a.isPinned && !b.isPinned) {
@@ -309,6 +316,7 @@ function _sortByPinned(notes) {
   })
 }
 
+//---- sorting todo items by checked and unchecked ----//
 function _sortByChecked(todo) {
   return todo.sort((a, b) => {
     if (!a.isChecked && b.isChecked) {
@@ -320,13 +328,7 @@ function _sortByChecked(todo) {
   })
 }
 
-// function _filterTodo(todo, filterBy) {
-//   console.log('this', todo, filterBy);
-//   let filteredToDos = todo.filter((task) => task.txt.toLowerCase().includes(filterBy.toLowerCase()))
-//   console.log('filteredToDos', filteredToDos);
-//   return
-// }
-
+//---- functions to communicate with local storage ----//
 function _loadFromStorage() {
   return storageService.loadFromStorage(KEY)
 }

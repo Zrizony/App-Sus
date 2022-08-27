@@ -2,11 +2,14 @@ import { noteService } from '../services/note.service.js'
 import { NoteEditor } from './note-editor.jsx'
 
 export class NoteText extends React.Component {
+
+  //---- states ----//
   state = {
     noteTitle: '',
     noteText: '',
   }
 
+  //---- first render of the text note comopnent ----//
   componentDidMount() {
     const { note } = this.props
     this.setState({
@@ -15,16 +18,19 @@ export class NoteText extends React.Component {
     })
   }
 
-  handleTextChange = ({ target }) => {
-    const { value } = target
-    this.setState({ noteText: value })
-  }
-
+  //---- handeling text note title input change ----//
   handleTitleChange = ({ target }) => {
     const { value } = target
     this.setState({ noteTitle: value })
   }
 
+  //---- handeling text note text input change ----//
+  handleTextChange = ({ target }) => {
+    const { value } = target
+    this.setState({ noteText: value })
+  }
+
+  //---- saving changes after input loses focus (user clicked out of the input) ----//
   onSaveChange = () => {
     const { note } = this.props
     const { noteText } = this.state
@@ -32,13 +38,17 @@ export class NoteText extends React.Component {
     noteService.updateNoteText(note, noteText, noteTitle)
   }
 
+  //---- adjusting note size by text length ----//
   onResize = ({ target }) => {
     target.style.height = 'inherit'
     target.style.height = `${target.scrollHeight}px`
   }
 
+  //---- rendering text note with the desired values ----//
   render() {
     const { noteText, noteTitle } = this.state
+
+    //-- returning the note layout and content
     return (
       <div className="note-text-container">
         {noteTitle && (

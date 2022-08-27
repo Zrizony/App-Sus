@@ -1,13 +1,19 @@
 import { NoteEditor } from './note-editor.jsx'
 
 export class NoteImg extends React.Component {
+
+  //---- states ----//
   state = {
     imgReady: false,
   }
 
+  //---- rendering image note with the desired values ----//
   render() {
+    
+    //-- deconstructing for easier life 
     const { url, title } = this.props.note.info
     const { imgReady } = this.state
+
     return (
       <div className="note-img-container">
         <button

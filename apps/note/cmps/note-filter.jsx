@@ -1,15 +1,18 @@
 export class NoteFilter extends React.Component {
+
+  //---- states ----//
   state = {
     filterBy: {
       searchInput: '',
     },
   }
 
+  //---- filtering note with each key stroke inserted to the input field ----//
   handleChange = (ev) => {
+    ev.preventDefault
+
     const field = ev.target.name
     const value = ev.target.value
-
-    console.log('value', value);
 
     this.props.onSetFilter(this.state.filterBy)
     this.setState(
@@ -22,6 +25,7 @@ export class NoteFilter extends React.Component {
     )
   }
 
+  //---- rendering notes by filter input ----//
   render() {
     const { searchInput } = this.state.filterBy
 

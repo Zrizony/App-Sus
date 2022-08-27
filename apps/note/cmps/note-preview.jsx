@@ -5,17 +5,21 @@ import { NoteVideo } from './note-video.jsx'
 import { noteService } from '../services/note.service.js'
 
 export class NotePreview extends React.Component {
+
+  //---- states ----//
   state = {
     isPinned: false,
     note: null,
     noteType: null,
   }
 
+  //---- first render of notes preview ----//
   componentDidMount() {
     const { note } = this.props
     this.setState({ note, noteType: note.type, isPinned: note.isPinned })
   }
 
+  //---- changing note background color with the 'changeNoteColor' function from service ----//
   onChangeNoteColor = (noteId, color) => {
     noteService.changeNoteColor(noteId, color).then(() => {
       this.setState((prevState) => ({
@@ -24,21 +28,25 @@ export class NotePreview extends React.Component {
     })
   }
 
+  //---- changing note pin state ----//
   onPin = (ev, noteId) => {
     ev.stopPropagation()
     ev.preventDefault()
-    
+
     const { onPinNote } = this.props
     onPinNote(ev, noteId)
     this.setState((prevState) => ({
-      ...prevState, isPinned: !this.state.isPinned
+      ...prevState,
+      isPinned: !this.state.isPinned,
     }))
   }
 
+  //---- rendering the currect note component by noteType state as the identifier ----//
   render() {
     const { note, noteType } = this.state
     if (!note || !noteType) return ''
 
+    //-- using DynamicCmp with switch case to render the correct component 
     const DynamicCmp = (props) => {
       if (!note) return ''
       switch (noteType) {
@@ -53,19 +61,12 @@ export class NotePreview extends React.Component {
       }
     }
 
-    const inlineStyle =
-      note.style.backgroundColor !== '#fff' &&
-      noteType !== 'note-img' &&
-      note.style.backgroundColor !== '#FFFFFF'
-        ? { backgroundColor: note.style.backgroundColor }
-        : {
-            backgroundColor: note.style.backgroundColor,
-            border: '1px solid transparent',
-          }
+    //-- rendering notes background color
+    const inlineStyle = { backgroundColor: note.style.backgroundColor }
 
     return (
       <div className="note-preview-shadow-protection">
-        <div className="note-preview" style={inlineStyle}>
+        <div className="note-preview"  style={inlineStyle}>
           <DynamicCmp
             note={note}
             onChangeNoteColor={this.onChangeNoteColor}
