@@ -94,7 +94,7 @@ export class BookDetails extends React.Component {
             <p>Language: {this.selectedLanguage()}</p>
             <p>Pages: {book.pageCount} - {this.bookPages()}</p>
             <p>Published: {book.publishedDate} - {this.bookAge()}</p>
-
+            <hr></hr>
 
 
 

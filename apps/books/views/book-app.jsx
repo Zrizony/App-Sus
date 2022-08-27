@@ -2,6 +2,7 @@ import { bookService } from '../services/books.service.js'
 import { BookList } from '../cmps/book-list.jsx'
 import { BookFilter } from '../cmps/book-filter.jsx'
 import { AddBook } from '../cmps/add-book.jsx'
+import { utilService } from '../../../services/util.service.js'
 
 export class BookApp extends React.Component {
 
@@ -32,6 +33,16 @@ export class BookApp extends React.Component {
         })
     }
 
+    onAddBook = (book) => {
+        console.log(book);
+        bookService.addBook(book)
+            .then(() => {
+
+                console.log("we came here");
+                this.loadBooks()
+            })
+    }
+
 
     render() {
         const { books } = this.state
@@ -39,7 +50,7 @@ export class BookApp extends React.Component {
         return <section>
             <h1>Book Shop Home-page</h1>
             <div className='flex align-center space-evenly'>
-                <AddBook />
+                <AddBook onAddBook={this.onAddBook} />
                 <BookFilter onSetFilter={this.onSetFilter} />
             </div>
 

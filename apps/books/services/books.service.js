@@ -461,13 +461,15 @@ let gBooks = [
     }
 ]
 ///// ----- ///// ----- ///// ----- ////// ----- /////
-import { storageService } from './storage.service'
+import { storageService } from './storage.service.js'
+import { utilService } from '../../../services/util.service.js'
 // CRUDL Functions //
 
 export const bookService = {
     query,
     getBookById,
-    addReview
+    addReview,
+    addBook
 
 }
 
@@ -503,14 +505,28 @@ function addReview(bookId, review) {
     return Promise.resolve()
 }
 
+function addBook(book) {
+    const newBook = {
+        "id": utilService.makeId(),
+        "title": book.title,
+        "subtitle": "varius malesuada augue molestie sollicitudin faucibus mi eu tempus",
+        "authors": book.authors,
+        "publishedDate": book.publishedDate,
+        "description": book.description,
+        "pageCount": book.pageCount,
+        "categories": book.categories,
+        "thumbnail": book.imageLinks.thumbnail,
+        "language": book.language,
+        "listPrice": {
+            "amount": 98,
+            "currencyCode": "ILS",
+            "isOnSale": false
+        },
+        "review": []
+    }
 
-
-
-
-function _saveToStorage(cars) {
-    storageService.saveToStorage(KEY, cars)
+    gBooks.unshift(newBook)
+    return Promise.resolve()
 }
 
-function _loadFromStorage() {
-    return storageService.loadFromStorage(KEY)
-}
+

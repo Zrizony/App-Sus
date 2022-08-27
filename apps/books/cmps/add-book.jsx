@@ -1,3 +1,4 @@
+import { bookService } from '../services/books.service.js'
 import { googleBooksService } from '../services/google-books.service.js'
 import { BooksResultList } from './books-result-list.jsx'
 
@@ -19,12 +20,15 @@ export class AddBook extends React.Component {
         ev.preventDefault()
         googleBooksService.getGoogleBooks(this.state.searchText)
             .then((res) => {
-                this.setState({ booksResult: res })
+                this.setState({ booksResult: res }, () => {
+                    // console.log(this.state.booksResult);
+                })
             })
     }
 
-    onAddBook = () => {
-        console.log("good");
+    onAddBook = (book) => {
+        console.log(book);
+
     }
 
     render() {
@@ -47,7 +51,7 @@ export class AddBook extends React.Component {
                 </label>
 
             </form>
-            {booksResult && <BooksResultList onAddBook={this.onAddBook} booksResult={booksResult} />}
+            {booksResult && <BooksResultList onAddBook={this.props.onAddBook} booksResult={booksResult} />}
         </section>
     }
 }
