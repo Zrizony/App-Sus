@@ -18,13 +18,13 @@ export class UserMsg extends React.Component {
     this.unsubscribe()
   }
 
-  closeMsg = ()=>{
+  closeMsg = () => {
     this.setState({ msg: null })
   }
 
   render() {
-    const {msg} = this.state
-    const {closeMsg} = this
+    const { msg } = this.state
+    const { closeMsg } = this
 
     if (!msg) return <span></span>
     return (

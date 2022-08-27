@@ -1,3 +1,75 @@
+import { storageService } from './storage.service.js'
+import { utilService } from '../../../services/util.service.js'
+
+export const bookService = {
+    query,
+    getBookById,
+    addReview,
+    addBook
+
+}
+
+// CRUDL Functions //
+
+function query(filterBy) {
+    let books = gBooks
+
+    if (filterBy) {
+        let { bookName, maxPrice, minPrice } = filterBy
+        if (!maxPrice) maxPrice = Infinity
+        if (!minPrice) minPrice = 0
+        books = books.filter(book => (
+            book.title.includes(bookName) &&
+            book.listPrice.amount >= minPrice &&
+            book.listPrice.amount <= maxPrice
+        ))
+    }
+
+    return Promise.resolve(books)
+}
+
+function getBookById(bookId) {
+    const book = gBooks.find((book) => {
+        return book.id === bookId
+    })
+
+    return Promise.resolve(book)
+}
+
+function addReview(bookId, review) {
+    const bookIdx = gBooks.findIndex(book => book.id === bookId)
+    gBooks[bookIdx].review.push(review)
+
+    return Promise.resolve()
+}
+
+function addBook(book) {
+    const newBook = {
+        "id": utilService.makeId(),
+        "title": book.title,
+        "subtitle": "varius malesuada augue molestie sollicitudin faucibus mi eu tempus",
+        "authors": book.authors,
+        "publishedDate": book.publishedDate,
+        "description": book.description,
+        "pageCount": book.pageCount,
+        "categories": book.categories,
+        "thumbnail": book.imageLinks.thumbnail,
+        "language": book.language,
+        "listPrice": {
+            "amount": 98,
+            "currencyCode": "ILS",
+            "isOnSale": false
+        },
+        "review": []
+    }
+
+    gBooks.unshift(newBook)
+
+    return Promise.resolve()
+}
+
+///// ----- ///// ----- ///// ----- ////// ----- /////
+
 let gBooks = [
     {
         "id": "OXeMG8wNskc",
@@ -460,73 +532,4 @@ let gBooks = [
         "review": []
     }
 ]
-///// ----- ///// ----- ///// ----- ////// ----- /////
-import { storageService } from './storage.service.js'
-import { utilService } from '../../../services/util.service.js'
-// CRUDL Functions //
-
-export const bookService = {
-    query,
-    getBookById,
-    addReview,
-    addBook
-
-}
-
-function query(filterBy) {
-    let books = gBooks
-
-    if (filterBy) {
-        console.log("here");
-        let { bookName, maxPrice, minPrice } = filterBy
-        if (!maxPrice) maxPrice = Infinity
-        if (!minPrice) minPrice = 0
-        books = books.filter(book => (
-            book.title.includes(bookName) &&
-            book.listPrice.amount >= minPrice &&
-            book.listPrice.amount <= maxPrice
-        ))
-    }
-
-    return Promise.resolve(books)
-}
-
-function getBookById(bookId) {
-    const book = gBooks.find((book) => {
-        return book.id === bookId
-    })
-    return Promise.resolve(book)
-}
-
-function addReview(bookId, review) {
-    const bookIdx = gBooks.findIndex(book => book.id === bookId)
-    // gBooks[bookIdx]["reviews"] = []
-    gBooks[bookIdx].review.push(review)
-    return Promise.resolve()
-}
-
-function addBook(book) {
-    const newBook = {
-        "id": utilService.makeId(),
-        "title": book.title,
-        "subtitle": "varius malesuada augue molestie sollicitudin faucibus mi eu tempus",
-        "authors": book.authors,
-        "publishedDate": book.publishedDate,
-        "description": book.description,
-        "pageCount": book.pageCount,
-        "categories": book.categories,
-        "thumbnail": book.imageLinks.thumbnail,
-        "language": book.language,
-        "listPrice": {
-            "amount": 98,
-            "currencyCode": "ILS",
-            "isOnSale": false
-        },
-        "review": []
-    }
-
-    gBooks.unshift(newBook)
-    return Promise.resolve()
-}
-
 

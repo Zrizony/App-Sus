@@ -9,7 +9,6 @@ export class BookApp extends React.Component {
     state = {
         books: [],
         filterBy: null,
-
     }
 
     componentDidMount() {
@@ -20,11 +19,8 @@ export class BookApp extends React.Component {
         bookService.query(this.state.filterBy)
             .then((res) => {
                 this.setState({ books: res }, () => {
-                    console.log("state has finished loading");
-                    console.log(this.state);
                 })
             })
-
     }
 
     onSetFilter = (filterBy) => {
@@ -34,15 +30,12 @@ export class BookApp extends React.Component {
     }
 
     onAddBook = (book) => {
-        console.log(book);
         bookService.addBook(book)
             .then(() => {
-
                 console.log("we came here");
                 this.loadBooks()
             })
     }
-
 
     render() {
         const { books } = this.state
@@ -53,11 +46,7 @@ export class BookApp extends React.Component {
                 <AddBook onAddBook={this.onAddBook} />
                 <BookFilter onSetFilter={this.onSetFilter} />
             </div>
-
             <BookList books={books} />
-
-
         </section>
-
     }
 }

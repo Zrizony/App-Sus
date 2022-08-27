@@ -8,6 +8,7 @@ export function Home() {
       <h3>Take notes, read emails and discover new books</h3>
 
       <section className="home-apps">
+
         <NavLink to="/note">
           <article className="home-notes">
             <img src="./assets/img/notes.png" alt="notes" />
@@ -28,6 +29,7 @@ export function Home() {
             <h2>Books</h2>
           </article>
         </NavLink>
+
       </section>
     </section>
   )

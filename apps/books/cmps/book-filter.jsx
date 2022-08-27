@@ -15,18 +15,15 @@ export class BookFilter extends React.Component {
             filterBy: {
                 ...prevState.filterBy,
                 [field]: value
-
             }
-
         }), () => {
             this.props.onSetFilter(this.state.filterBy)
         })
-
-
     }
 
     onClear = (ev) => {
         ev.preventDefault()
+
         this.setState({
             filterBy: {
                 bookName: '',

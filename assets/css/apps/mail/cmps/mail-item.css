@@ -86,6 +86,7 @@
   text-shadow: 0px 0px 20px #888484;
   transition: 0.3s;
 }
+
 .mail-item .stared:hover {
   background-color: rgb(107, 107, 107);
   border-radius: 50%;
@@ -152,9 +153,6 @@
   grid-area: 1 / 5 / 2 / 6;
 }
 
-@media (min-width: 1020px) {
-}
-
 .mail-item .seperator {
   display: none;
 }
@@ -163,7 +161,4 @@
   .mail-item .seperator {
     display: unset;
   }
-}
-
-.mail-item .fa-star {
 }

@@ -13,7 +13,6 @@ export class AddBook extends React.Component {
         ev.preventDefault()
         const value = ev.target.value
         this.setState({ searchText: value })
-
     }
 
     onSearchBook = (ev) => {
@@ -21,7 +20,6 @@ export class AddBook extends React.Component {
         googleBooksService.getGoogleBooks(this.state.searchText)
             .then((res) => {
                 this.setState({ booksResult: res }, () => {
-                    // console.log(this.state.booksResult);
                 })
             })
     }
@@ -41,10 +39,8 @@ export class AddBook extends React.Component {
                         value={searchText}
                         onChange={this.handleChange}
                     />
-
                     <button>Search</button>
                 </label>
-
             </form>
             {booksResult && <BooksResultList onAddBook={this.props.onAddBook} booksResult={booksResult} />}
         </section>

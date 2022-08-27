@@ -34,11 +34,11 @@
   color: #fff;
   border: 0;
   height: 46px;
-  /* width: 10%; */
   min-width: 120px;
   padding-left: 50px;
   border-radius: 8px;
 }
+
 @media (min-width: 610px) {
   .mail-filter input {
     min-width: 250px;
@@ -54,6 +54,7 @@
 .mail-filter input::placeholder {
   color: #fff;
 }
+
 .mail-filter input:focus::placeholder {
   color: #696969;
 }

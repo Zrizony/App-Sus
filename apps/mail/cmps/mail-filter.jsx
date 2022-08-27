@@ -5,14 +5,17 @@ export class MailFilter extends React.Component {
             searchInput: ''
         }
     }
+
     myInterval = null
 
+    // handle search filter input changes
     handleChange = (ev) => {
         clearInterval(this.myInterval)
 
         const field = ev.target.name
         const value = ev.target.value
 
+        // debouncing
         this.myInterval = setTimeout(() => {
             this.props.onSetFilter(this.state.filterBy)
 

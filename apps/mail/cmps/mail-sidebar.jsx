@@ -1,17 +1,6 @@
 const { Link, NavLink, withRouter } = ReactRouterDOM
-import { mailService } from '../services/mail.service.js'
-
 
 export function MailSideBar({ onCompose }) {
-
-    function onUnread() {
-        let length
-        mailService.unreadMails()
-            .then((res) => {
-                length = res
-            })
-        return length
-    }
 
     return <div className="mail-sidebar">
         <button className="compose" onClick={onCompose}><i className="fa-solid fa-pen"></i><span className="compose-text">Compose</span></button>
@@ -20,7 +9,6 @@ export function MailSideBar({ onCompose }) {
             <div className="sidebar-item sidebar-inbox">
                 <i className="sidebar-icon fa-solid fa-inbox"></i>
                 <span className="sidebar-text">Inbox</span>
-                <span>{onUnread()}</span>
             </div>
         </NavLink>
         <NavLink to='/mail/starred'>

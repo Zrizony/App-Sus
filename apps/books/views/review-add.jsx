@@ -9,7 +9,6 @@ export class ReviewAdd extends React.Component {
     }
 
     componentDidMount() {
-        console.log('didMount');
         const currDate = this.currentDate()
 
         this.setState({
@@ -23,7 +22,6 @@ export class ReviewAdd extends React.Component {
         this.loadReview()
     }
 
-
     currentDate = () => {
         const now = new Date()
         let day = now.getDate()
@@ -35,22 +33,18 @@ export class ReviewAdd extends React.Component {
     }
 
     loadReview = () => {
-        console.log(this.props);
-
         const { bookId } = this.props.match.params
-        bookService.getBookById(bookId)
-            .then((res) => {
-                if (!res) { return this.props.history.push('/') }
-                this.setState({ bookId }, () => {
 
-                    console.log(this.state);
-                })
+        bookService.getBookById(bookId)
+            .then(() => {
+                this.setState({ bookId })
             })
     }
 
     handleChange = ({ target }) => {
         const field = target.name
         const value = target.type === 'number' ? +target.value : target.value
+
         this.setState((prevState) => ({
             review: {
                 ...prevState.review,
@@ -61,21 +55,19 @@ export class ReviewAdd extends React.Component {
 
     onAddReview = (ev) => {
         ev.preventDefault()
+
         bookService.addReview(this.state.bookId, this.state.review)
             .then(() => {
                 this.props.history.push('/books/' + this.state.bookId)
             })
     }
 
-
-
-
-
     render() {
         const { bookId, review } = this.state
         if (!bookId) { return <div>Loading...</div> }
         return <section className="review-add">
             <form className="flex column align-center" onSubmit={this.onAddReview}>
+
                 <label htmlFor="fullName">Full Name:</label>
                 <input
                     type="text"
@@ -118,15 +110,10 @@ export class ReviewAdd extends React.Component {
                     placeholder="Your Name..."
                     required
                 />
+
                 <button>Add Review !</button>
+
             </form>
         </section>
     }
 }
-
-// review: {
-//     fullName: '',
-//     rate: '',
-//     readAt: '',
-//     freeText: ''
-// }

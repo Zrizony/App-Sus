@@ -1,6 +1,5 @@
 .mail-details {
   position: relative;
-  /* top: 50px; */
   left: 80px;
   width: calc(100% - 80px);
   min-width: 380px;
