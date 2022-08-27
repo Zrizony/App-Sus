@@ -5,6 +5,7 @@ import { MailSideBar } from '../cmps/mail-sidebar.jsx'
 import { MailCompose } from '../cmps/mail-compose.jsx'
 import { MailDetails } from '../cmps/mail-details.jsx'
 import { MailPages } from '../cmps/mail-pages.jsx'
+import { eventBusService } from '../../../services/event-bus.service.js';
 
 
 export class MailApp extends React.Component {
@@ -22,8 +23,8 @@ export class MailApp extends React.Component {
     PAGE_SIZE = 10
 
     componentDidMount() {
-        console.log(this.props.match);
         console.log("Component Did Mount");
+
         this.loadInbox()
     }
 
@@ -60,15 +61,13 @@ export class MailApp extends React.Component {
                 this.setState({ inbox: res, }, () => {
                     console.log("curr inbox:", this.state.inbox);
                     this.setCurrPages()
-
-                    console.log(this.state);
                 })
             })
     }
 
     sortMailsForDisplay = (mails) => {
         const { folder } = this.props.match.params
-        console.log(folder);
+        console.log("Current Folder: ", folder);
 
         if (folder.toLowerCase() === "inbox") {
             this.setState({ mailShown: null, currPage: 0 })
