@@ -50,7 +50,7 @@ export class BookApp extends React.Component {
         return <section className="book-app">
             <h1>Book Shop Home-page</h1>
             <div className='flex align-center space-evenly books-inputs'>
-                <AddBook />
+                <AddBook onAddBook={this.onAddBook} />
                 <BookFilter onSetFilter={this.onSetFilter} />
             </div>
 

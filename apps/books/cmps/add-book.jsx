@@ -26,11 +26,6 @@ export class AddBook extends React.Component {
             })
     }
 
-    onAddBook = (book) => {
-        console.log(book);
-
-    }
-
     render() {
         const { searchText, booksResult } = this.state
 
