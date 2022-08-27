@@ -17,10 +17,11 @@ export class MailApp extends React.Component {
         isComposing: null,
         mailShown: null,
         currPage: 0,
-        unReadMails: null
+        unReadMails: null,
+        isModalShown: false
     }
     // unchangble
-    PAGE_SIZE = 10
+    PAGE_SIZE = 20
 
     componentDidMount() {
         console.log("Component Did Mount");
@@ -35,14 +36,6 @@ export class MailApp extends React.Component {
             this.loadInbox()
             return
         }
-
-        // console.log(prevState.inboxToDisplay);
-        // console.log(this.state.inboxToDisplay);
-        // if (prevState.inboxToDisplay !== this.state.inboxToDisplay) {
-        //     console.log("this");
-        //     this.setCurrPages()
-        //     return
-        // }
     }
 
     // load content
@@ -59,7 +52,6 @@ export class MailApp extends React.Component {
             })
             .then((res) => {
                 this.setState({ inbox: res, }, () => {
-                    console.log("curr inbox:", this.state.inbox);
                     this.setCurrPages()
                 })
             })
@@ -67,7 +59,6 @@ export class MailApp extends React.Component {
 
     sortMailsForDisplay = (mails) => {
         const { folder } = this.props.match.params
-        console.log("Current Folder: ", folder);
 
         if (folder.toLowerCase() === "inbox") {
             this.setState({ mailShown: null, currPage: 0 })
@@ -88,6 +79,12 @@ export class MailApp extends React.Component {
             this.setState({ mailShown: null, currPage: 0 })
             return mails.filter((mail) => {
                 return (mail.isTrashed)
+            })
+        } else if (this.state.mailShown === null) {
+            this.props.history.push('/mail/inbox')
+            this.setState({ mailShown: null, currPage: 0 })
+            return mails.filter((mail) => {
+                return (!mail.isTrashed && !mail.isSent)
             })
         } else if (folder === this.state.mailShown.id) {
             return []

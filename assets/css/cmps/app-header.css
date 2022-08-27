@@ -1,5 +1,8 @@
 header {
+  position: relative;
   background: var(--secondary-bg-color);
+  z-index: 5;
+  /* min-width: 460px; */
 }
 
 .app-header {
@@ -17,7 +20,7 @@ header {
 }
 
 .dropdown .btn-dropdown {
-  font-size: 1.5em;  
+  font-size: 1.5em;
   border: none;
   outline: none;
   color: white;
@@ -27,7 +30,7 @@ header {
 }
 
 .dropdown .btn-dropdown:hover {
-  background-color: #D70001;
+  background-color: #d70001;
   transition: 0.15s;
 }
 
@@ -35,7 +38,7 @@ header {
   display: none;
   position: absolute;
   background-color: rgb(50, 50, 50);
-  background-image: url('../../img/wood.png');
+  background-image: url("../../img/wood.png");
   color: #fff;
   min-width: 160px;
   z-index: 1;

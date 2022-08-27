@@ -1,8 +1,18 @@
 .mail-details {
   position: relative;
   /* top: 50px; */
-  left: 256px;
-  width: calc(100% - 256px);
+  left: 80px;
+  width: calc(100% - 80px);
+  min-width: 380px;
+  animation: fadeIn;
+  animation-duration: 0.5s;
+}
+
+@media (min-width: 900px) {
+  .mail-details {
+    left: 256px;
+    width: calc(100% - 256px);
+  }
 }
 
 .mail-details .buttons {
@@ -28,14 +38,14 @@
 }
 
 .mail-details h2 {
-  font-size: 2em;
+  font-size: 1.5em;
   padding: 20px;
   border-bottom: 1px solid #413f3f;
 }
 
 .mail-details .fullname {
   font-family: product-sans-bold;
-  font-size: 1.25em;
+  font-size: 1em;
 }
 
 .mail-details .contact-details {
@@ -45,7 +55,7 @@
 .mail-details .to {
   font-size: 0.875em;
   text-align: start;
-  padding-left: 20px;
+  padding-left: 70px;
   padding-bottom: 20px;
   border-bottom: 1px solid #413f3f;
 }
@@ -57,4 +67,19 @@
 
 .mail-details hr {
   background-color: #969696;
+}
+
+@media (min-width: 900px) {
+  .mail-details h2 {
+    font-size: 2em;
+  }
+
+  .mail-details .fullname {
+    font-size: 1.25em;
+  }
+
+  .mail-details .to {
+    padding-left: 20px;
+    text-align: start;
+  }
 }

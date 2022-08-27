@@ -4,57 +4,58 @@ export function About() {
     <section className="full about">
       <h1>Pssst... Hey you... Yeah you!</h1>
       <h2>This amazing and useful site was created with user comfort as high piority in mind</h2>
-      <h2> If you wish to explore more about our other projects. Please! be our guest and see them all down below! </h2>
-      <div className="main-layout flex space-between guiding-arrows">
-      <span>▼</span>
-      <span>▼</span>
-      </div>
+      <h2>▼ If you wish to explore more about our other projects. Please! be our guest and see them all down below! ▼</h2>
 
-        <section className="about-us">
-            <article className="about-me barak">
-                <h2>Barak Kaldess</h2>
-                <p>Musician and Web Developer</p>
-                <ul className="clean-list flex">
-                    <li>
-                        <a href="https://github.com/ibarak2" target="_blank">
-                            <i className="fa-brands fa-github"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/barak-kaldess/" target="_blank">
-                            <i className="fa-brands fa-linkedin"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" target="_blank">
-                            <i className="fa-brands fa-instagram"></i>
-                        </a>
-                    </li>
-                </ul>
-            </article>
+            <section className="about-us">
+                <article className="about-me barak">
+                    <h2>Barak Kaldess</h2>
+                    <p>Musician and Web Developer</p>
+                    <ul className="clean-list flex">
+                        <li>
+                            <a href="https://github.com/ibarak2" target="_blank">
+                                <i className="fa-brands fa-github"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://bit.ly/3PP8LdP" target="_blank">
+                                <i className="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://bit.ly/3D72Uta" target="_blank">
+                                <i className="fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://bit.ly/3E4rJHn" target="_blank">
+                                <i className="fa-brands fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </article>
 
-            <article className="about-me roy">
-                <h2>Roy Yam</h2>
-                <p>Illustrator and Web Developer</p>
-                <ul className="clean-list flex">
-                    <li>
-                        <a href="https://github.com/Zrizony" target="_blank">
-                            <i className="fa-brands fa-github"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/roy-yam/" target="_blank">
-                            <i className="fa-brands fa-linkedin"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/royyam99/" target="_blank">
-                            <i className="fa-brands fa-instagram"></i>
-                        </a>
-                    </li>
-                </ul>
-            </article>
-        </section>
+                <article className="about-me roy">
+                    <h2>Roy Yam</h2>
+                    <p>Illustrator and Web Developer</p>
+                    <ul className="clean-list flex">
+                        <li>
+                            <a href="https://github.com/Zrizony" target="_blank">
+                                <i className="fa-brands fa-github"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/roy-yam/" target="_blank">
+                                <i className="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/royyam99/" target="_blank">
+                                <i className="fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </article>
+            </section>
 
         <article className="newsletter">
             <h3>Join us and get our latest news right here!</h3>
