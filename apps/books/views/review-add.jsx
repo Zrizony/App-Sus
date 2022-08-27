@@ -107,7 +107,7 @@ export class ReviewAdd extends React.Component {
                     value={review.freeText}
                     id="freeText"
                     onChange={this.handleChange}
-                    placeholder="Your Name..."
+                    placeholder="Your honest review..."
                     required
                 />
 

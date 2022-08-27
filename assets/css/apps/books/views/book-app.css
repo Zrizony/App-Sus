@@ -13,12 +13,11 @@
 .add-book input {
   border-radius: 2px;
   border: none;
-  padding: 0.3rem;
+  padding: 0.5rem;
 }
 
 .add-book input:focus {
   outline: none;
-  padding: 1rem;
 }
 
 .add-book form button {
@@ -38,13 +37,12 @@
 .book-filter input {
   border-radius: 2px;
   border: none;
-  padding: 0.3rem;
+  padding: 0.5rem;
 
 }
 
 .book-filter input:focus {
   outline: none;
-  padding: 1rem;
 }
 
 .book-filter form button {

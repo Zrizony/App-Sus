@@ -9,26 +9,36 @@
 .review-add input {
   border-radius: 2px;
   border: none;
-  padding: 0.3rem;
+  padding: 0.5rem;
 }
 
 .review-add input:focus {
   outline: none;
-  padding: 1rem;
 }
 
 .review-add textarea {
-    width: 20rem;
-    height: 10rem;
-    border-radius: 5px;
-    border: none;
-    resize: both;
-  }
-  
-  .review-add textarea:focus {
-    outline: none;
-    padding: 1rem;
-  }
+  width: 20rem;
+  height: 10rem;
+  border-radius: 5px;
+  border: none;
+  resize: both;
+  padding: 0.5rem;
+}
+
+.review-add textarea:focus {
+  outline: none;
+}
+
+.review-add form #rate {
+  border: none;
+  outline: none;
+  margin-top: 0.2rem;
+}
+
+.review-add form #rate:focus {
+  outline: none;
+  border: none;
+}
 
 .review-add form button {
   color: #3d3d3d;
