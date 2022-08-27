@@ -5,6 +5,7 @@ export function Home() {
     <section className="home">
       <img src="./assets/img/logo.PNG"></img>
       <h2>Managing documents just became easier</h2>
+      <h3>Take notes, read emails and discover new books</h3>
 
       <section className="home-apps">
         <NavLink to="/note">
