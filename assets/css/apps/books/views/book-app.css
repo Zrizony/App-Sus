@@ -1,7 +1,6 @@
 .book-app {
   text-transform: capitalize;
   margin-bottom: 1rem;
-
   animation: fadeIn;
   animation-duration: 0.3s;
 }

@@ -6,6 +6,15 @@
   margin-top: 1rem;
 }
 
+.review-add textarea {
+  width: 20rem;
+  height: 10rem;
+  border-radius: 5px;
+  border: none;
+  resize: both;
+  padding: 0.5rem;
+}
+
 .review-add input {
   border-radius: 2px;
   border: none;
@@ -14,15 +23,6 @@
 
 .review-add input:focus {
   outline: none;
-}
-
-.review-add textarea {
-  width: 20rem;
-  height: 10rem;
-  border-radius: 5px;
-  border: none;
-  resize: both;
-  padding: 0.5rem;
 }
 
 .review-add textarea:focus {

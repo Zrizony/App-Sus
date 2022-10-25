@@ -111,7 +111,7 @@ export class ReviewAdd extends React.Component {
                     required
                 />
 
-                <button>Add Review !</button>
+                <button>Add Review</button>
 
             </form>
         </section>
