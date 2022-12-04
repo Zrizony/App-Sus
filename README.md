@@ -18,6 +18,7 @@ We built this project mostly around the core principles of React.JS so it's Fron
 ## Contact
 
 Roy Yam - [https://www.linkedin.com/in/roy-yam/](https://www.linkedin.com/in/roy-yam/) - royyam99@gmail.com
+<br>
 Barak Kaldess - [Linkedin](https://www.linkedin.com/in/barak-kaldess/) - [Facebook](https://www.facebook.com/barak.kaldess/) - barakkaldess@hotmail.com
 
 
